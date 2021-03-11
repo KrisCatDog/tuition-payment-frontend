@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  //
+  title: "Home",
 };
 </script>
