@@ -2,7 +2,7 @@
   <button
     :disabled="isSubmitted"
     :type="type"
-    class="inline-flex items-center bg-green-400 hover:bg-green-500 font-medium text-white sm:mt-6 py-2 px-8 transition duration-100 ease-in border border-green-400 hover:border-green-500 rounded-full focus:outline-none"
+    class="inline-flex items-center bg-green-400 hover:bg-green-500 font-medium text-white py-2 px-8 transition duration-100 ease-in border border-green-400 hover:border-green-500 rounded-full focus:outline-none"
     :class="{ 'disabled:opacity-75 disabled:cursor-not-allowed': isSubmitted }"
   >
     <CircleLoading v-show="isSubmitted" />
