@@ -75,6 +75,7 @@ import GuestLayout from "@/components/layouts/GuestLayout";
 import BasicButton from "@/components/ui/BasicButton";
 
 export default {
+  title: "Login",
   components: { GuestLayout, BasicButton },
   setup() {
     const formData = reactive({
