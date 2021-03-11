@@ -30,7 +30,7 @@
             v-model="formData.username"
             type="text"
             id="username"
-            class="mt-1 block w-full px-0.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-green-400"
+            class="mt-1 block w-full font-medium px-0.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-green-400"
             placeholder="Your username"
           />
           <p
@@ -50,7 +50,7 @@
             v-model="formData.password"
             type="password"
             id="password"
-            class="mt-1 block w-full px-0.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-green-400"
+            class="mt-1 block w-full font-medium px-0.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-green-400"
             placeholder="Your password"
           />
           <p
