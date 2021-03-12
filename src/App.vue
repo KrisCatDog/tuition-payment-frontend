@@ -30,5 +30,18 @@ export default {
 #app {
   @apply min-h-screen font-sans antialiased;
 }
+.select2 {
+  width: 100% !important;
+  @apply focus:outline-none !important;
+}
+.select2-selection {
+  @apply h-10 !important;
+}
+.select2-selection__rendered {
+  @apply leading-9 !important;
+}
+.select2-selection__arrow {
+  @apply h-10 !important;
+}
 </style>
 
