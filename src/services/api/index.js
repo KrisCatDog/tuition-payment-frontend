@@ -1,9 +1,18 @@
+import app from "@/main";
 import axios from "axios";
 
 const ApiService = {
   init(baseURL) {
     axios.defaults.baseURL = baseURL;
     axios.defaults.withCredentials = true;
+    axios.interceptors.request.use((config) => {
+      app.$Progress.start();
+      return config;
+    });
+    axios.interceptors.response.use((response) => {
+      app.$Progress.finish();
+      return response;
+    });
 
     this.setHeader();
   },

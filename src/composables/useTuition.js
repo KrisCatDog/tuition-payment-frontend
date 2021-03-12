@@ -1,5 +1,6 @@
+import app from "@/main";
 import ApiService from "@/services/api";
-import { reactive, toRefs } from "@vue/reactivity";
+import { reactive, toRefs } from "vue";
 
 const state = reactive({
   tuitions: [],
@@ -40,6 +41,8 @@ const storeTuition = async (data) => {
 
     state.errors = null;
   } catch (e) {
+    app.$Progress.fail();
+
     state.errors = e.response.data;
   }
 

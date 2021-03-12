@@ -32,7 +32,7 @@
         <TheLabel target="nominal" label="Nominal" />
         <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
         <InputError
-          v-if="errors && errors.errors && errors.errors.tahun"
+          v-if="errors && errors.errors && errors.errors.nominal"
           :label="errors.errors.nominal[0]"
         />
       </InputGroup>
@@ -239,11 +239,13 @@ export default {
     async function handleSubmit() {
       await storeTuition(formData);
 
-      isModalOpen.value = false;
-      formData.tahun = "";
-      formData.nominal = "";
+      if (!errors.value) {
+        isModalOpen.value = false;
+        isModalAlertOpen.value = true;
 
-      isModalAlertOpen.value = true;
+        formData.tahun = "";
+        formData.nominal = "";
+      }
     }
 
     function toggleModalAlert() {
