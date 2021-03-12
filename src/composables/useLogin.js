@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import app from "@/main";
 import ApiService from "@/services/api";
 import router from "@/router";
 
@@ -21,6 +22,8 @@ const login = async (formData) => {
 
     router.push({ name: "Home" });
   } catch (e) {
+    app.$Progress.fail();
+
     errors.value = e.response.data;
   }
 
