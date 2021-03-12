@@ -5,7 +5,7 @@
   >
     <div class="py-4 text-gray-500 dark:text-gray-400">
       <a
-        class="font-mulish inline-block ml-6 mt-5 text-xl font-extrabold text-gray-800 dark:text-gray-200"
+        class="font-mulish inline-block ml-6 mt-4 text-xl font-extrabold text-gray-800 dark:text-gray-200"
       >
         SPP App
       </a>
@@ -29,11 +29,34 @@
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               ></path>
             </svg>
-            <span class="ml-4">Dashboard</span>
+            <span class="ml-4">Home</span>
           </router-link>
         </li>
       </ul>
       <ul>
+        <li class="relative my-1 mx-4">
+          <router-link
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            :to="{ name: 'PayTuition' }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path
+                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path>
+            </svg>
+            <span class="ml-4">Pembayaran SPP</span>
+          </router-link>
+        </li>
         <li class="relative my-1 mx-4">
           <router-link
             class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -58,8 +81,30 @@
         </li>
         <li class="relative my-1 mx-4">
           <router-link
-            class="px-5 py-3 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'Login' }"
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            :to="{ name: 'Majors' }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="21 8 21 21 3 21 3 8"></polyline>
+              <rect x="1" y="3" width="22" height="5"></rect>
+              <line x1="10" y1="12" x2="14" y2="12"></line>
+            </svg>
+            <span class="ml-4">Data Jurusan</span>
+          </router-link>
+        </li>
+        <li class="relative my-1 mx-4">
+          <router-link
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            :to="{ name: 'Classes' }"
           >
             <svg
               class="w-5 h-5"
@@ -76,6 +121,73 @@
               ></path>
             </svg>
             <span class="ml-4">Data Kelas</span>
+          </router-link>
+        </li>
+        <li class="relative my-1 mx-4">
+          <router-link
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            :to="{ name: 'Officers' }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="ml-4">Data Petugas</span>
+          </router-link>
+        </li>
+        <li class="relative my-1 mx-4">
+          <router-link
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            :to="{ name: 'Students' }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span class="ml-4">Data Siswa</span>
+          </router-link>
+        </li>
+        <li class="relative my-1 mx-4">
+          <router-link
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            :to="{ name: 'PaymentHistory' }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path
+                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path>
+            </svg>
+            <span class="ml-4">History Pembayaran</span>
           </router-link>
         </li>
       </ul>
