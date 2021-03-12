@@ -6,20 +6,18 @@
       class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center justify-center"
     >
       <transition name="modal-popout">
-        <form
-          @submit.prevent="onConfirm"
+        <div
           v-show="modelValue"
-          class="w-11/12 px-6 py-4 overflow-hidden bg-white dark:bg-gray-800 rounded-xl sm:m-4 sm:max-w-xl"
+          class="w-11/12 px-6 py-4 overflow-hidden bg-white dark:bg-gray-800 rounded-lg sm:m-4 sm:max-w-xl"
         >
           <header class="flex justify-between -mx-6 -my-4 px-6 py-4 bg-gray-50">
-            <h4 class="text-xl font-extrabold text-gray-800 font-mulish">
+            <h4 class="text-xl text-gray-800 font-extrabold font-mulish">
               SPP App
             </h4>
             <button
-              type="button"
               class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded focus:outline-none focus:ring-2 dark:hover:text-gray-200 hover: hover:text-gray-700"
               aria-label="close"
-              @click.prevent="$emit('update:modelValue', false)"
+              @click="$emit('update:modelValue', false)"
             >
               <svg
                 class="w-4 h-4"
@@ -38,38 +36,52 @@
           </header>
           <div class="my-8">
             <p
-              class="mb-6 text-2xl font-extrabold text-gray-700 dark:text-gray-300"
+              class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
             >
               {{ title }}
             </p>
-            <slot />
+            <p class="text-sm text-gray-700 dark:text-gray-400">
+              {{ description }}
+            </p>
           </div>
           <footer
             class="flex flex-row items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-4 bg-gray-50 dark:bg-gray-800"
           >
-            <BasicButton type="submit" :isSubmitted="isPending">
+            <BasicDeleteButton
+              type="button"
+              @click.prevent="onConfirm"
+              :isSubmitted="isPending"
+            >
               {{ buttonText }}
-            </BasicButton>
+            </BasicDeleteButton>
           </footer>
-        </form>
+        </div>
       </transition>
     </div>
   </transition>
 </template>
 
 <script>
-import BasicButton from "@/components/ui/BasicButton";
+import BasicDeleteButton from "@/components/ui/BasicDeleteButton";
 
 export default {
-  components: { BasicButton },
+  components: { BasicDeleteButton },
   props: {
     modelValue: {
       type: Boolean,
       default: false,
     },
+    isPending: {
+      type: Boolean,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
+      required: false,
     },
     buttonText: {
       type: String,
@@ -77,10 +89,6 @@ export default {
     },
     onConfirm: {
       type: Function,
-      required: true,
-    },
-    isPending: {
-      type: Boolean,
       required: true,
     },
   },
