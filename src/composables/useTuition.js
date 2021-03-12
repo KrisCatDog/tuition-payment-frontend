@@ -49,8 +49,50 @@ const storeTuition = async (data) => {
   state.isPending = false;
 };
 
+const updateTuition = async (data) => {
+  state.isPending = true;
+
+  try {
+    await ApiService.put(`/api/tuitions/${data.id}`, data);
+
+    await fetchTuition(1, 10);
+
+    state.errors = null;
+  } catch (e) {
+    app.$Progress.fail();
+
+    state.errors = e.response.data;
+  }
+
+  state.isPending = false;
+};
+
+const destroyTuition = async (id) => {
+  state.isPending = true;
+
+  try {
+    await ApiService.delete(`/api/tuitions/${id}`);
+
+    await fetchTuition(1, 10);
+
+    state.errors = null;
+  } catch (e) {
+    app.$Progress.fail();
+
+    state.errors = e.response.data;
+  }
+
+  state.isPending = false;
+};
+
 const useTuition = () => {
-  return { fetchTuition, storeTuition, ...toRefs(state) };
+  return {
+    fetchTuition,
+    storeTuition,
+    updateTuition,
+    destroyTuition,
+    ...toRefs(state),
+  };
 };
 
 export default useTuition;
