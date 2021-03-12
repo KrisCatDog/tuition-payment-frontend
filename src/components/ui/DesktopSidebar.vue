@@ -36,7 +36,7 @@
       <ul>
         <li class="relative my-1 mx-4">
           <router-link
-            class="px-5 py-3 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
             :to="{ name: 'Tuitions' }"
           >
             <svg
