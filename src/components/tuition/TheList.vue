@@ -10,7 +10,8 @@
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
         <button
-          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+          @click.prevent="showEditModal(tuition)"
+          class="flex items-center justify-between px-1 py-1 text-sm font-medium leading-5 text-green-600 rounded-lg dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
           aria-label="Edit"
         >
           <svg
@@ -25,7 +26,8 @@
           </svg>
         </button>
         <button
-          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+          @click.prevent="showDeleteModal(tuition)"
+          class="flex items-center justify-between px-1 py-1 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
           aria-label="Delete"
         >
           <svg
@@ -44,18 +46,169 @@
       </div>
     </td>
   </tr>
+
+  <FormModal
+    v-model="isEditModalOpen"
+    title="Edit Data SPP"
+    buttonText="Submit"
+    :onConfirm="handleUpdate"
+    :isPending="isPending"
+  >
+    <InputGroup>
+      <TheLabel target="tahun" label="Tahun" />
+      <OutlineInput id="tahun" type="text" v-model="formData.tahun" />
+      <InputError
+        v-if="errors && errors.errors && errors.errors.tahun"
+        :label="errors.errors.tahun[0]"
+      />
+    </InputGroup>
+
+    <InputGroup>
+      <TheLabel target="nominal" label="Nominal" />
+      <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
+      <InputError
+        v-if="errors && errors.errors && errors.errors.nominal"
+        :label="errors.errors.nominal[0]"
+      />
+    </InputGroup>
+  </FormModal>
+
+  <ClassicModal
+    v-model="isDeleteModalOpen"
+    title="Apakah anda yakin?"
+    :description="
+      'Anda akan menghapus data spp tahun ' +
+      formData.tahun +
+      ' dengan nominal ' +
+      formData.nominal
+    "
+    buttonText="Hapus"
+    :onConfirm="handleDestroy"
+    :isPending="isPending"
+  />
+
+  <AppModal
+    v-model="isModalAlertOpen"
+    title="Sukses!"
+    :description="modalData.description"
+    buttonText="OK"
+    :modalIcon="modalData.modalIcon"
+    :onConfirm="toggleModalAlert"
+  />
 </template>
 
 <script>
+import { reactive, ref } from "vue";
 import useTuition from "@/composables/useTuition";
+import FormModal from "@/components/ui/FormModal";
+import TheLabel from "@/components/ui/TheLabel";
+import OutlineInput from "@/components/ui/OutlineInput";
+import InputError from "@/components/ui/InputError";
+import InputGroup from "@/components/ui/InputGroup";
+import ClassicModal from "@/components/ui/ClassicModal";
+import AppModal from "@/components/ui/AppModal";
 
 export default {
+  components: {
+    OutlineInput,
+    InputError,
+    FormModal,
+    TheLabel,
+    InputGroup,
+    ClassicModal,
+    AppModal,
+  },
   async setup() {
-    const { tuitions, fetchTuition } = useTuition();
+    const {
+      tuitions,
+      fetchTuition,
+      updateTuition,
+      destroyTuition,
+      errors,
+      isPending,
+    } = useTuition();
+    const isEditModalOpen = ref(false);
+    const isDeleteModalOpen = ref(false);
+    const isModalAlertOpen = ref(false);
+    const formData = reactive({
+      id: "",
+      tahun: "",
+      nominal: "",
+    });
+    const modalData = reactive({
+      description: "",
+      modalIcon: "",
+    });
 
     await fetchTuition(1, 10);
 
-    return { tuitions };
+    function showEditModal(tuition) {
+      isEditModalOpen.value = true;
+
+      formData.id = tuition.id;
+      formData.tahun = tuition.tahun;
+      formData.nominal = tuition.nominal;
+    }
+
+    function showDeleteModal(tuition) {
+      isDeleteModalOpen.value = true;
+
+      formData.id = tuition.id;
+      formData.tahun = tuition.tahun;
+      formData.nominal = tuition.nominal;
+    }
+
+    function toggleModalAlert() {
+      isModalAlertOpen.value = !isModalAlertOpen.value;
+    }
+
+    async function handleUpdate() {
+      await updateTuition(formData);
+
+      if (!errors.value) {
+        modalData.description = "Data SPP berhasil diedit.";
+        modalData.modalIcon = "success";
+
+        isEditModalOpen.value = false;
+        isModalAlertOpen.value = true;
+
+        formData.id = "";
+        formData.tahun = "";
+        formData.nominal = "";
+      }
+    }
+
+    async function handleDestroy() {
+      await destroyTuition(formData.id);
+
+      if (!errors.value) {
+        modalData.description = "Data SPP berhasil dihapus.";
+        modalData.modalIcon = "success";
+
+        isDeleteModalOpen.value = false;
+        isModalAlertOpen.value = true;
+
+        formData.id = "";
+        formData.tahun = "";
+        formData.nominal = "";
+      }
+    }
+
+    return {
+      errors,
+      tuitions,
+      formData,
+      isEditModalOpen,
+      showEditModal,
+      handleUpdate,
+      isPending,
+      isDeleteModalOpen,
+      handleDestroy,
+      showDeleteModal,
+      isModalAlertOpen,
+      toggleModalAlert,
+      modalData,
+    };
   },
 };
 </script>
