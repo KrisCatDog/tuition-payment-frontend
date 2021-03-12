@@ -7,12 +7,50 @@
         Data SPP
       </h2>
 
-      <BasicButton>Tambah</BasicButton>
+      <BasicButton type="button" @click.prevent="isModalOpen = true">
+        Tambah
+      </BasicButton>
     </div>
 
-    <div class="p-5 rounded-3xl shadow-xl bg-white">
-      <div></div>
-      <div class="border w-full overflow-hidden rounded-lg">
+    <FormModal
+      v-model="isModalOpen"
+      title="Tambah Data SPP"
+      buttonText="Submit"
+      :onConfirm="handleSubmit"
+      :isPending="isPending"
+    >
+      <InputGroup>
+        <TheLabel target="tahun" label="Tahun" />
+        <OutlineInput id="tahun" type="text" v-model="formData.tahun" />
+        <InputError
+          v-if="errors && errors.errors && errors.errors.tahun"
+          :label="errors.errors.tahun[0]"
+        />
+      </InputGroup>
+
+      <InputGroup>
+        <TheLabel target="nominal" label="Nominal" />
+        <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
+        <InputError
+          v-if="errors && errors.errors && errors.errors.tahun"
+          :label="errors.errors.nominal[0]"
+        />
+      </InputGroup>
+    </FormModal>
+
+    <AppModal
+      v-model="isModalAlertOpen"
+      title="Sukses!"
+      description="Data SPP berhasil di tambahkan."
+      buttonText="OK"
+      modalIcon="success"
+      :onConfirm="toggleModalAlert"
+    />
+
+    <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
+      <div
+        class="border dark:border-gray-700 w-full overflow-hidden rounded-lg"
+      >
         <div class="w-full overflow-x-auto">
           <table class="w-full whitespace-no-wrap">
             <thead>
@@ -28,47 +66,34 @@
             <tbody
               class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
             >
-              <tr class="text-gray-700 dark:text-gray-400 font-medium">
-                <td class="px-8 py-3">1</td>
-                <td class="px-8 py-3 text-sm">2020</td>
-                <td class="px-8 py-3 text-sm">300000</td>
-                <td class="px-8 py-3">
-                  <div class="flex items-center space-x-4 text-sm">
-                    <button
-                      class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                      aria-label="Edit"
-                    >
-                      <svg
-                        class="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button
-                      class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                      aria-label="Delete"
-                    >
-                      <svg
-                        class="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </td>
-              </tr>
+              <Suspense>
+                <template #default> <TheList /> </template>
+
+                <template #fallback>
+                  <tr v-for="i in 5" :key="i" class="animate-pulse">
+                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-1/4"></div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-1/2"></div>
+                      </div>
+                    </td>
+                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </Suspense>
             </tbody>
           </table>
         </div>
@@ -76,16 +101,24 @@
           class="grid px-8 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
         >
           <span class="flex items-center col-span-3">
-            Showing 21-30 of 100
+            Showing {{ paginationMeta.from }}-{{ paginationMeta.to }} of
+            {{ paginationMeta.total }}
           </span>
           <span class="col-span-2"></span>
-          <!-- Pagination -->
           <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
             <nav aria-label="Table navigation">
               <ul class="inline-flex items-center">
                 <li>
                   <button
-                    class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-green"
+                    @click.prevent="
+                      handleFetch(paginationMeta.current_page - 1)
+                    "
+                    :disabled="paginationMeta.current_page == 1"
+                    class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                    :class="{
+                      'disabled:cursor-not-allowed':
+                        paginationMeta.current_page == 1,
+                    }"
                     aria-label="Previous"
                   >
                     <svg
@@ -101,54 +134,31 @@
                     </svg>
                   </button>
                 </li>
-                <li>
+                <li v-for="(link, i) in paginationMeta.links" :key="i">
                   <button
-                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-green"
+                    @click.prevent="handleFetch(link.label)"
+                    class="px-3 py-1 font-medium transition-colors duration-150 rounded-md focus:outline-none hover:bg-green-100"
+                    :class="{
+                      'text-white bg-green-600 border border-r-0 border-green-600 hover:bg-green-600':
+                        link.active,
+                    }"
                   >
-                    1
+                    {{ link.label }}
                   </button>
                 </li>
                 <li>
                   <button
-                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-green"
-                  >
-                    2
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="px-3 py-1 text-white transition-colors duration-150 bg-green-600 border border-r-0 border-green-600 rounded-md focus:outline-none focus:shadow-outline-green"
-                  >
-                    3
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-green"
-                  >
-                    4
-                  </button>
-                </li>
-                <li>
-                  <span class="px-3 py-1">...</span>
-                </li>
-                <li>
-                  <button
-                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-green"
-                  >
-                    8
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-green"
-                  >
-                    9
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-green"
+                    @click.prevent="
+                      handleFetch(paginationMeta.current_page + 1)
+                    "
+                    :disabled="
+                      paginationMeta.current_page == paginationMeta.last_page
+                    "
+                    class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                    :class="{
+                      'disabled:cursor-not-allowed':
+                        paginationMeta.current_page == paginationMeta.last_page,
+                    }"
                     aria-label="Next"
                   >
                     <svg
@@ -174,13 +184,83 @@
 </template>
 
 <script>
+import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import AppLayout from "@/components/layouts/AppLayout";
 import BasicButton from "@/components/ui/BasicButton";
+import FormModal from "@/components/ui/FormModal";
+import useTuition from "@/composables/useTuition";
+import OutlineInput from "@/components/ui/OutlineInput";
+import TheLabel from "@/components/ui/TheLabel";
+import InputError from "@/components/ui/InputError";
+import InputGroup from "@/components/ui/InputGroup";
+import AppModal from "@/components/ui/AppModal";
+
+const TheList = defineAsyncComponent(() =>
+  import("@/components/tuition/TheList")
+);
 
 export default {
-  components: { AppLayout, BasicButton },
+  title: "Data SPP",
+  components: {
+    AppLayout,
+    BasicButton,
+    TheList,
+    FormModal,
+    OutlineInput,
+    TheLabel,
+    InputError,
+    InputGroup,
+    AppModal,
+  },
+  setup() {
+    const {
+      fetchTuition,
+      storeTuition,
+      paginationMeta,
+      errors,
+      isPending,
+    } = useTuition();
+    const perPage = ref(10);
+    const isModalOpen = ref(false);
+    const isModalAlertOpen = ref(false);
+    const formData = reactive({
+      tahun: "",
+      nominal: "",
+    });
+
+    onMounted(async () => {
+      await fetchTuition(1, perPage.value);
+    });
+
+    async function handleFetch(page) {
+      await fetchTuition(page, perPage.value);
+    }
+
+    async function handleSubmit() {
+      await storeTuition(formData);
+
+      isModalOpen.value = false;
+      formData.tahun = "";
+      formData.nominal = "";
+
+      isModalAlertOpen.value = true;
+    }
+
+    function toggleModalAlert() {
+      isModalAlertOpen.value = !isModalAlertOpen.value;
+    }
+
+    return {
+      paginationMeta,
+      handleFetch,
+      isModalOpen,
+      formData,
+      errors,
+      handleSubmit,
+      isPending,
+      isModalAlertOpen,
+      toggleModalAlert,
+    };
+  },
 };
 </script>
-
-<style>
-</style>
