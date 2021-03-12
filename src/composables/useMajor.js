@@ -4,6 +4,7 @@ import { reactive, toRefs } from "vue";
 
 const state = reactive({
   majors: [],
+  formattedMajors: [],
   paginationMeta: {},
   errors: {},
   isPending: false,
@@ -18,6 +19,9 @@ const fetchMajor = async (page, perPage = 15) => {
     );
 
     state.majors = res.data.data;
+    state.formattedMajors = state.majors.map((major) => {
+      return { id: major.id, text: major.kompetensi_keahlian };
+    });
     state.paginationMeta = res.data.meta;
 
     state.paginationMeta.links.shift();
