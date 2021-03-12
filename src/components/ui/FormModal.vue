@@ -37,7 +37,9 @@
             </button>
           </header>
           <div class="my-8">
-            <p class="mb-6 text-xl font-bold text-gray-700 dark:text-gray-300">
+            <p
+              class="mb-6 text-2xl font-extrabold text-gray-700 dark:text-gray-300"
+            >
               {{ title }}
             </p>
             <slot />
