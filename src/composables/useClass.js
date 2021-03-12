@@ -3,25 +3,21 @@ import ApiService from "@/services/api";
 import { reactive, toRefs } from "vue";
 
 const state = reactive({
-  majors: [],
-  formattedMajors: [],
+  classes: [],
   paginationMeta: {},
   errors: {},
   isPending: false,
 });
 
-const fetchMajor = async (page, perPage = 15) => {
+const fetchClass = async (page, perPage = 15) => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/majors?page=${page}&per_page=${perPage}`
+      `/api/classes?page=${page}&per_page=${perPage}`
     );
 
-    state.majors = res.data.data;
-    state.formattedMajors = state.majors.map((major) => {
-      return { id: major.id, text: major.kompetensi_keahlian };
-    });
+    state.classes = res.data.data;
     state.paginationMeta = res.data.meta;
 
     state.paginationMeta.links.shift();
@@ -35,13 +31,13 @@ const fetchMajor = async (page, perPage = 15) => {
   state.isPending = false;
 };
 
-const storeMajor = async (data) => {
+const storeClass = async (data) => {
   state.isPending = true;
 
   try {
-    await ApiService.post(`/api/majors`, data);
+    await ApiService.post(`/api/classes`, data);
 
-    await fetchMajor(1, 10);
+    await fetchClass(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -53,13 +49,13 @@ const storeMajor = async (data) => {
   state.isPending = false;
 };
 
-const updateMajor = async (data) => {
+const updateClass = async (data) => {
   state.isPending = true;
 
   try {
-    await ApiService.put(`/api/majors/${data.id}`, data);
+    await ApiService.put(`/api/classes/${data.id}`, data);
 
-    await fetchMajor(1, 10);
+    await fetchClass(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -71,13 +67,13 @@ const updateMajor = async (data) => {
   state.isPending = false;
 };
 
-const destroyMajor = async (id) => {
+const destroyClass = async (id) => {
   state.isPending = true;
 
   try {
-    await ApiService.delete(`/api/majors/${id}`);
+    await ApiService.delete(`/api/classes/${id}`);
 
-    await fetchMajor(1, 10);
+    await fetchClass(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -89,14 +85,14 @@ const destroyMajor = async (id) => {
   state.isPending = false;
 };
 
-const useMajor = () => {
+const useClass = () => {
   return {
-    fetchMajor,
-    storeMajor,
-    updateMajor,
-    destroyMajor,
+    fetchClass,
+    storeClass,
+    updateClass,
+    destroyClass,
     ...toRefs(state),
   };
 };
 
-export default useMajor;
+export default useClass;
