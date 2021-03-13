@@ -6,6 +6,7 @@ import { reactive, toRefs } from "vue";
 const state = reactive({
   students: [],
   student: {},
+  formattedStudents: [],
   paginationMeta: {},
   errors: {},
   isPending: false,
@@ -20,6 +21,9 @@ const fetchStudent = async (page, perPage = 15) => {
     );
 
     state.students = res.data.data;
+    state.formattedStudents = state.students.map((student) => {
+      return { id: student.id, text: student.user.name };
+    });
     state.paginationMeta = res.data.meta;
 
     state.paginationMeta.links.shift();
