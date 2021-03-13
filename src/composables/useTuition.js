@@ -4,6 +4,7 @@ import { reactive, toRefs } from "vue";
 
 const state = reactive({
   tuitions: [],
+  formattedTuitions: [],
   paginationMeta: {},
   errors: {},
   isPending: false,
@@ -18,6 +19,9 @@ const fetchTuition = async (page, perPage = 15) => {
     );
 
     state.tuitions = res.data.data;
+    state.formattedTuitions = state.tuitions.map((tuition) => {
+      return { id: tuition.id, text: tuition.nominal };
+    });
     state.paginationMeta = res.data.meta;
 
     state.paginationMeta.links.shift();
