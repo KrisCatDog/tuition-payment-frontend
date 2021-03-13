@@ -3,25 +3,21 @@ import ApiService from "@/services/api";
 import { reactive, toRefs } from "vue";
 
 const state = reactive({
-  tuitions: [],
-  formattedTuitions: [],
+  officers: [],
   paginationMeta: {},
   errors: {},
   isPending: false,
 });
 
-const fetchTuition = async (page, perPage = 15) => {
+const fetchOfficer = async (page, perPage = 15) => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/tuitions?page=${page}&per_page=${perPage}`
+      `/api/officers?page=${page}&per_page=${perPage}`
     );
 
-    state.tuitions = res.data.data;
-    state.formattedTuitions = state.tuitions.map((tuition) => {
-      return { id: tuition.id, text: tuition.nominal };
-    });
+    state.officers = res.data.data;
     state.paginationMeta = res.data.meta;
 
     state.paginationMeta.links.shift();
@@ -35,13 +31,13 @@ const fetchTuition = async (page, perPage = 15) => {
   state.isPending = false;
 };
 
-const storeTuition = async (data) => {
+const storeOfficer = async (data) => {
   state.isPending = true;
 
   try {
-    await ApiService.post(`/api/tuitions`, data);
+    await ApiService.post(`/api/officers`, data);
 
-    await fetchTuition(1, 10);
+    await fetchOfficer(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -53,13 +49,13 @@ const storeTuition = async (data) => {
   state.isPending = false;
 };
 
-const updateTuition = async (data) => {
+const updateOfficer = async (data) => {
   state.isPending = true;
 
   try {
-    await ApiService.put(`/api/tuitions/${data.id}`, data);
+    await ApiService.put(`/api/officers/${data.id}`, data);
 
-    await fetchTuition(1, 10);
+    await fetchOfficer(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -71,13 +67,13 @@ const updateTuition = async (data) => {
   state.isPending = false;
 };
 
-const destroyTuition = async (id) => {
+const destroyOfficer = async (id) => {
   state.isPending = true;
 
   try {
-    await ApiService.delete(`/api/tuitions/${id}`);
+    await ApiService.delete(`/api/officers/${id}`);
 
-    await fetchTuition(1, 10);
+    await fetchOfficer(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -89,14 +85,14 @@ const destroyTuition = async (id) => {
   state.isPending = false;
 };
 
-const useTuition = () => {
+const useOfficer = () => {
   return {
-    fetchTuition,
-    storeTuition,
-    updateTuition,
-    destroyTuition,
+    fetchOfficer,
+    storeOfficer,
+    updateOfficer,
+    destroyOfficer,
     ...toRefs(state),
   };
 };
 
-export default useTuition;
+export default useOfficer;

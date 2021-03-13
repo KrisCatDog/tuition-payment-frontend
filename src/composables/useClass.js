@@ -3,24 +3,24 @@ import ApiService from "@/services/api";
 import { reactive, toRefs } from "vue";
 
 const state = reactive({
-  tuitions: [],
-  formattedTuitions: [],
+  classes: [],
+  formattedClasses: [],
   paginationMeta: {},
   errors: {},
   isPending: false,
 });
 
-const fetchTuition = async (page, perPage = 15) => {
+const fetchClass = async (page, perPage = 15) => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/tuitions?page=${page}&per_page=${perPage}`
+      `/api/classes?page=${page}&per_page=${perPage}`
     );
 
-    state.tuitions = res.data.data;
-    state.formattedTuitions = state.tuitions.map((tuition) => {
-      return { id: tuition.id, text: tuition.nominal };
+    state.classes = res.data.data;
+    state.formattedClasses = state.classes.map((iclass) => {
+      return { id: iclass.id, text: iclass.nama_kelas };
     });
     state.paginationMeta = res.data.meta;
 
@@ -35,13 +35,13 @@ const fetchTuition = async (page, perPage = 15) => {
   state.isPending = false;
 };
 
-const storeTuition = async (data) => {
+const storeClass = async (data) => {
   state.isPending = true;
 
   try {
-    await ApiService.post(`/api/tuitions`, data);
+    await ApiService.post(`/api/classes`, data);
 
-    await fetchTuition(1, 10);
+    await fetchClass(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -53,13 +53,13 @@ const storeTuition = async (data) => {
   state.isPending = false;
 };
 
-const updateTuition = async (data) => {
+const updateClass = async (data) => {
   state.isPending = true;
 
   try {
-    await ApiService.put(`/api/tuitions/${data.id}`, data);
+    await ApiService.put(`/api/classes/${data.id}`, data);
 
-    await fetchTuition(1, 10);
+    await fetchClass(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -71,13 +71,13 @@ const updateTuition = async (data) => {
   state.isPending = false;
 };
 
-const destroyTuition = async (id) => {
+const destroyClass = async (id) => {
   state.isPending = true;
 
   try {
-    await ApiService.delete(`/api/tuitions/${id}`);
+    await ApiService.delete(`/api/classes/${id}`);
 
-    await fetchTuition(1, 10);
+    await fetchClass(1, 10);
 
     state.errors = null;
   } catch (e) {
@@ -89,14 +89,14 @@ const destroyTuition = async (id) => {
   state.isPending = false;
 };
 
-const useTuition = () => {
+const useClass = () => {
   return {
-    fetchTuition,
-    storeTuition,
-    updateTuition,
-    destroyTuition,
+    fetchClass,
+    storeClass,
+    updateClass,
+    destroyClass,
     ...toRefs(state),
   };
 };
 
-export default useTuition;
+export default useClass;

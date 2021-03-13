@@ -5,6 +5,7 @@ import "./assets/tailwind.css";
 import ApiService from "./services/api";
 import titleMixin from "./mixins/titleMixin";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
+import Select2 from "vue3-select2-component";
 
 ApiService.init(process.env.VUE_APP_API_ORIGIN);
 
@@ -26,6 +27,7 @@ const app = createApp(App)
   .use(router)
   .mixin(titleMixin)
   .use(VueProgressBar, options)
+  .component("Select2", Select2)
   .mount("#app");
 
 export default app;
