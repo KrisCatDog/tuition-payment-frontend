@@ -1,6 +1,6 @@
 const paymentHistory = [
   {
-    path: "/payment-history",
+    path: "/payment-histories",
     name: "PaymentHistory",
     component: () => import("@/views/PaymentHistory"),
     meta: { requiresAuth: true },
