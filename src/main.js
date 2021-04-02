@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import "./assets/tailwind.css";
+import "./assets/fonts.css";
 import ApiService from "./services/api";
 import titleMixin from "./mixins/titleMixin";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
