@@ -7,7 +7,7 @@
     <td class="px-8 py-3 text-sm font-bold">{{ iclass.id }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ iclass.nama_kelas }}</td>
     <td class="px-8 py-3 text-sm font-medium">
-      {{ iclass.major.kompetensi_keahlian }}
+      {{ iclass.major.name }}
     </td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">

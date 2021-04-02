@@ -15,7 +15,7 @@
       {{ student.class.nama_kelas }}
     </td>
     <td class="px-8 py-3 text-sm font-medium">
-      {{ student.class.major.kompetensi_keahlian }}
+      {{ student.class.major.name }}
     </td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
