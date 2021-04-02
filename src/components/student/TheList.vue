@@ -9,8 +9,8 @@
     <td class="px-8 py-3 text-sm font-medium">{{ student.user.username }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ student.nisn }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ student.nis }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ student.alamat }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ student.no_telp }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.address }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.telp_number }}</td>
     <td class="px-8 py-3 text-sm font-medium">
       {{ student.class.nama_kelas }}
     </td>
