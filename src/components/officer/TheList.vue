@@ -172,7 +172,7 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.tahun = "";
+        formData.year = "";
         formData.nominal = "";
       }
     }
@@ -188,7 +188,7 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.tahun = "";
+        formData.year = "";
         formData.nominal = "";
       }
     }

@@ -254,7 +254,7 @@ export default {
         isModalOpen.value = false;
         isModalAlertOpen.value = true;
 
-        formData.tahun = "";
+        formData.year = "";
         formData.nominal = "";
       }
     }

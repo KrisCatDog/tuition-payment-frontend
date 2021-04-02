@@ -20,11 +20,11 @@
       :isPending="isPending"
     >
       <InputGroup>
-        <TheLabel target="tahun" label="Tahun" />
-        <OutlineInput id="tahun" type="text" v-model="formData.tahun" />
+        <TheLabel target="year" label="Tahun" />
+        <OutlineInput id="year" type="text" v-model="formData.year" />
         <InputError
-          v-if="errors && errors.errors && errors.errors.tahun"
-          :label="errors.errors.tahun[0]"
+          v-if="errors && errors.errors && errors.errors.year"
+          :label="errors.errors.year[0]"
         />
       </InputGroup>
 
@@ -224,7 +224,7 @@ export default {
     const isModalOpen = ref(false);
     const isModalAlertOpen = ref(false);
     const formData = reactive({
-      tahun: "",
+      year: "",
       nominal: "",
     });
 
@@ -243,7 +243,7 @@ export default {
         isModalOpen.value = false;
         isModalAlertOpen.value = true;
 
-        formData.tahun = "";
+        formData.year = "";
         formData.nominal = "";
       }
     }
