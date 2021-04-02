@@ -20,7 +20,7 @@ const fetchTuition = async (page, perPage = 15) => {
 
     state.tuitions = res.data.data;
     state.formattedTuitions = state.tuitions.map((tuition) => {
-      return { id: tuition.id, text: tuition.nominal };
+      return { id: tuition.id, text: tuition.amount };
     });
     state.paginationMeta = res.data.meta;
 

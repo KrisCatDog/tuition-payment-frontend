@@ -6,7 +6,7 @@
   >
     <td class="px-8 py-3 text-sm font-bold">{{ tuition.id }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ tuition.year }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ tuition.nominal }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ tuition.amount }}</td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
         <button
@@ -64,11 +64,11 @@
     </InputGroup>
 
     <InputGroup>
-      <TheLabel target="nominal" label="Nominal" />
-      <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
+      <TheLabel target="amount" label="Nominal" />
+      <OutlineInput id="amount" type="text" v-model="formData.amount" />
       <InputError
-        v-if="errors && errors.errors && errors.errors.nominal"
-        :label="errors.errors.nominal[0]"
+        v-if="errors && errors.errors && errors.errors.amount"
+        :label="errors.errors.amount[0]"
       />
     </InputGroup>
   </FormModal>
@@ -80,7 +80,7 @@
       'Anda akan menghapus data spp tahun ' +
       formData.year +
       ' dengan nominal ' +
-      formData.nominal
+      formData.amount
     "
     buttonText="Hapus"
     :onConfirm="handleDestroy"
@@ -133,7 +133,7 @@ export default {
     const formData = reactive({
       id: "",
       year: "",
-      nominal: "",
+      amount: "",
     });
     const modalData = reactive({
       description: "",
@@ -147,7 +147,7 @@ export default {
 
       formData.id = tuition.id;
       formData.year = tuition.year;
-      formData.nominal = tuition.nominal;
+      formData.amount = tuition.amount;
     }
 
     function showDeleteModal(tuition) {
@@ -155,7 +155,7 @@ export default {
 
       formData.id = tuition.id;
       formData.year = tuition.year;
-      formData.nominal = tuition.nominal;
+      formData.amount = tuition.amount;
     }
 
     function toggleModalAlert() {
@@ -174,7 +174,7 @@ export default {
 
         formData.id = "";
         formData.year = "";
-        formData.nominal = "";
+        formData.amount = "";
       }
     }
 
@@ -190,7 +190,7 @@ export default {
 
         formData.id = "";
         formData.year = "";
-        formData.nominal = "";
+        formData.amount = "";
       }
     }
 

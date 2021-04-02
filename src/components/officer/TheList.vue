@@ -173,7 +173,7 @@ export default {
 
         formData.id = "";
         formData.year = "";
-        formData.nominal = "";
+        formData.amount = "";
       }
     }
 
@@ -189,7 +189,7 @@ export default {
 
         formData.id = "";
         formData.year = "";
-        formData.nominal = "";
+        formData.amount = "";
       }
     }
 

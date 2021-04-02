@@ -29,11 +29,11 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nominal" label="Nominal" />
-        <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
+        <TheLabel target="amount" label="Nominal" />
+        <OutlineInput id="amount" type="text" v-model="formData.amount" />
         <InputError
-          v-if="errors && errors.errors && errors.errors.nominal"
-          :label="errors.errors.nominal[0]"
+          v-if="errors && errors.errors && errors.errors.amount"
+          :label="errors.errors.amount[0]"
         />
       </InputGroup>
     </FormModal>
@@ -225,7 +225,7 @@ export default {
     const isModalAlertOpen = ref(false);
     const formData = reactive({
       year: "",
-      nominal: "",
+      amount: "",
     });
 
     onMounted(async () => {
@@ -244,7 +244,7 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.year = "";
-        formData.nominal = "";
+        formData.amount = "";
       }
     }
 
