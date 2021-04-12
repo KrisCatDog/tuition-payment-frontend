@@ -92,7 +92,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="'Anda akan menghapus data kelas ' + formData.grade"
+    :description="'Anda akan menghapus data kelas ' + modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -169,9 +169,7 @@ export default {
       isDeleteModalOpen.value = true;
 
       formData.id = iclass.id;
-      formData.major_id = iclass.major.id;
-      formData.grade = iclass.grade;
-      formData.code = iclass.code;
+      modalData.description = `${iclass.grade} ${iclass.major.name} ${iclass.code}`;
     }
 
     function toggleModalAlert() {
