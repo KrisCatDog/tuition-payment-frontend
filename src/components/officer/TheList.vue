@@ -7,6 +7,7 @@
     <td class="px-8 py-3 text-sm font-bold">{{ officer.id }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ officer.name }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ officer.username }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ officer.role.name }}</td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
         <button
