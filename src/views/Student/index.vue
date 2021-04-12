@@ -92,7 +92,8 @@
                 <th class="px-8 py-3">NIS</th>
                 <th class="px-8 py-3">Alamat</th>
                 <th class="px-8 py-3">No Telepon</th>
-                <th class="px-8 py-3">Kelas</th>
+                <th class="px-8 py-3">Tingkatan Kelas</th>
+                <th class="px-8 py-3">Nomor Kelas</th>
                 <th class="px-8 py-3">Jurusan</th>
                 <th class="px-8 py-3">Actions</th>
               </tr>

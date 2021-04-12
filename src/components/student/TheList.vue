@@ -11,9 +11,8 @@
     <td class="px-8 py-3 text-sm font-medium">{{ student.nis }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ student.address }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ student.telp_number }}</td>
-    <td class="px-8 py-3 text-sm font-medium">
-      {{ student.class.nama_kelas }}
-    </td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.class.grade }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.class.code }}</td>
     <td class="px-8 py-3 text-sm font-medium">
       {{ student.class.major.name }}
     </td>
