@@ -35,15 +35,15 @@
           />
         </InputGroup>
         <InputGroup class="w-1/2">
-          <TheLabel target="jumlah_bayar" label="Jumlah Bayar" />
+          <TheLabel target="amount_paid" label="Jumlah Bayar" />
           <OutlineInput
-            id="jumlah_bayar"
+            id="amount_paid"
             type="text"
-            v-model="formData.jumlah_bayar"
+            v-model="formData.amount_paid"
           />
           <InputError
-            v-if="errors && errors.errors && errors.errors.jumlah_bayar"
-            :label="errors.errors.jumlah_bayar[0]"
+            v-if="errors && errors.errors && errors.errors.amount_paid"
+            :label="errors.errors.amount_paid[0]"
           />
         </InputGroup>
       </div>
@@ -85,7 +85,7 @@ export default {
     const isModalAlertOpen = ref(false);
     const formData = reactive({
       student_id: "",
-      jumlah_bayar: "",
+      amount_paid: "",
     });
 
     onMounted(async () => {
@@ -99,7 +99,7 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.student_id = "";
-        formData.jumlah_bayar = "";
+        formData.amount_paid = "";
       }
     }
 

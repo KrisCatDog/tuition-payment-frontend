@@ -20,7 +20,7 @@ const fetchMajor = async (page, perPage = 15) => {
 
     state.majors = res.data.data;
     state.formattedMajors = state.majors.map((major) => {
-      return { id: major.id, text: major.kompetensi_keahlian };
+      return { id: major.id, text: major.name };
     });
     state.paginationMeta = res.data.meta;
 

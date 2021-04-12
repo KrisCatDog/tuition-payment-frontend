@@ -33,15 +33,20 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Nama Kelas" />
-        <OutlineInput
-          id="nama-kelas"
-          type="text"
-          v-model="formData.nama_kelas"
-        />
+        <TheLabel target="nama-kelas" label="Tingkatan Kelas" />
+        <OutlineInput id="nama-kelas" type="text" v-model="formData.grade" />
         <InputError
-          v-if="errors && errors.errors && errors.errors.nama_kelas"
-          :label="errors.errors.nama_kelas[0]"
+          v-if="errors && errors.errors && errors.errors.grade"
+          :label="errors.errors.grade[0]"
+        />
+      </InputGroup>
+
+      <InputGroup>
+        <TheLabel target="nama-kelas" label="Nomor Kelas" />
+        <OutlineInput id="nama-kelas" type="text" v-model="formData.code" />
+        <InputError
+          v-if="errors && errors.errors && errors.errors.code"
+          :label="errors.errors.code[0]"
         />
       </InputGroup>
     </FormModal>
@@ -66,7 +71,8 @@
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
               >
                 <th class="px-8 py-3">No</th>
-                <th class="px-8 py-3">Nama Kelas</th>
+                <th class="px-8 py-3">Tingkatan Kelas</th>
+                <th class="px-8 py-3">Nomor Kelas</th>
                 <th class="px-8 py-3">Nama Jurusan</th>
                 <th class="px-8 py-3">Actions</th>
               </tr>
@@ -235,7 +241,8 @@ export default {
     const isModalAlertOpen = ref(false);
     const formData = reactive({
       major_id: "",
-      nama_kelas: "",
+      grade: "",
+      code: "",
     });
 
     onMounted(async () => {
@@ -254,8 +261,8 @@ export default {
         isModalOpen.value = false;
         isModalAlertOpen.value = true;
 
-        formData.tahun = "";
-        formData.nominal = "";
+        formData.year = "";
+        formData.amount = "";
       }
     }
 

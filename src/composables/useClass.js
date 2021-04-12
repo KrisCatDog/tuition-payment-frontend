@@ -20,7 +20,10 @@ const fetchClass = async (page, perPage = 15) => {
 
     state.classes = res.data.data;
     state.formattedClasses = state.classes.map((iclass) => {
-      return { id: iclass.id, text: iclass.nama_kelas };
+      return {
+        id: iclass.id,
+        text: `${iclass.grade} ${iclass.major.name} ${iclass.code}`,
+      };
     });
     state.paginationMeta = res.data.meta;
 

@@ -11,7 +11,7 @@
     <td class="px-8 py-3 text-sm font-medium">
       {{ payment.officer.name }}
     </td>
-    <td class="px-8 py-3 text-sm font-medium">{{ payment.jumlah_bayar }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ payment.amount_paid }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ payment.paid_at }}</td>
     <td class="px-8 py-3">
       <!-- <div class="flex items-center space-x-4 text-sm">

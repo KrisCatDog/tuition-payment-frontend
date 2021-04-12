@@ -5,8 +5,8 @@
     class="text-gray-700 dark:text-gray-400"
   >
     <td class="px-8 py-3 text-sm font-bold">{{ tuition.id }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ tuition.tahun }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ tuition.nominal }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ tuition.year }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ tuition.amount }}</td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
         <button
@@ -55,20 +55,20 @@
     :isPending="isPending"
   >
     <InputGroup>
-      <TheLabel target="tahun" label="Tahun" />
-      <OutlineInput id="tahun" type="text" v-model="formData.tahun" />
+      <TheLabel target="year" label="Tahun" />
+      <OutlineInput id="year" type="text" v-model="formData.year" />
       <InputError
-        v-if="errors && errors.errors && errors.errors.tahun"
-        :label="errors.errors.tahun[0]"
+        v-if="errors && errors.errors && errors.errors.year"
+        :label="errors.errors.year[0]"
       />
     </InputGroup>
 
     <InputGroup>
-      <TheLabel target="nominal" label="Nominal" />
-      <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
+      <TheLabel target="amount" label="Nominal" />
+      <OutlineInput id="amount" type="text" v-model="formData.amount" />
       <InputError
-        v-if="errors && errors.errors && errors.errors.nominal"
-        :label="errors.errors.nominal[0]"
+        v-if="errors && errors.errors && errors.errors.amount"
+        :label="errors.errors.amount[0]"
       />
     </InputGroup>
   </FormModal>
@@ -78,9 +78,9 @@
     title="Apakah anda yakin?"
     :description="
       'Anda akan menghapus data spp tahun ' +
-      formData.tahun +
+      formData.year +
       ' dengan nominal ' +
-      formData.nominal
+      formData.amount
     "
     buttonText="Hapus"
     :onConfirm="handleDestroy"
@@ -132,8 +132,8 @@ export default {
     const isModalAlertOpen = ref(false);
     const formData = reactive({
       id: "",
-      tahun: "",
-      nominal: "",
+      year: "",
+      amount: "",
     });
     const modalData = reactive({
       description: "",
@@ -146,16 +146,16 @@ export default {
       isEditModalOpen.value = true;
 
       formData.id = tuition.id;
-      formData.tahun = tuition.tahun;
-      formData.nominal = tuition.nominal;
+      formData.year = tuition.year;
+      formData.amount = tuition.amount;
     }
 
     function showDeleteModal(tuition) {
       isDeleteModalOpen.value = true;
 
       formData.id = tuition.id;
-      formData.tahun = tuition.tahun;
-      formData.nominal = tuition.nominal;
+      formData.year = tuition.year;
+      formData.amount = tuition.amount;
     }
 
     function toggleModalAlert() {
@@ -173,8 +173,8 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.tahun = "";
-        formData.nominal = "";
+        formData.year = "";
+        formData.amount = "";
       }
     }
 
@@ -189,8 +189,8 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.tahun = "";
-        formData.nominal = "";
+        formData.year = "";
+        formData.amount = "";
       }
     }
 

@@ -9,13 +9,12 @@
     <td class="px-8 py-3 text-sm font-medium">{{ student.user.username }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ student.nisn }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ student.nis }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ student.alamat }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ student.no_telp }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.address }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.telp_number }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.class.grade }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ student.class.code }}</td>
     <td class="px-8 py-3 text-sm font-medium">
-      {{ student.class.nama_kelas }}
-    </td>
-    <td class="px-8 py-3 text-sm font-medium">
-      {{ student.class.major.kompetensi_keahlian }}
+      {{ student.class.major.name }}
     </td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
@@ -129,8 +128,8 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.tahun = "";
-        formData.nominal = "";
+        formData.year = "";
+        formData.amount = "";
       }
     }
 

@@ -85,24 +85,28 @@
       </div>
       <div class="mt-2 flex space-x-8">
         <InputGroup class="w-1/2">
-          <TheLabel target="alamat" label="Alamat" />
+          <TheLabel target="address" label="Address" />
           <OutlineTextarea
             rows="4"
-            id="alamat"
+            id="address"
             type="text"
-            v-model="formData.alamat"
+            v-model="formData.address"
           />
           <InputError
-            v-if="errors && errors.errors && errors.errors.alamat"
-            :label="errors.errors.alamat[0]"
+            v-if="errors && errors.errors && errors.errors.address"
+            :label="errors.errors.address[0]"
           />
         </InputGroup>
         <InputGroup class="w-1/2">
-          <TheLabel target="no_telp" label="No Telepon" />
-          <OutlineInput id="no_telp" type="text" v-model="formData.no_telp" />
+          <TheLabel target="telp_number" label="No Telepon" />
+          <OutlineInput
+            id="telp_number"
+            type="text"
+            v-model="formData.telp_number"
+          />
           <InputError
-            v-if="errors && errors.errors && errors.errors.no_telp"
-            :label="errors.errors.no_telp[0]"
+            v-if="errors && errors.errors && errors.errors.telp_number"
+            :label="errors.errors.telp_number[0]"
           />
         </InputGroup>
       </div>
@@ -164,8 +168,8 @@ export default {
       tuition_id: "",
       nisn: "",
       nis: "",
-      no_telp: "",
-      alamat: "",
+      telp_number: "",
+      address: "",
     });
 
     onMounted(async () => {
@@ -180,8 +184,8 @@ export default {
       formData.tuition_id = student.value.tuition.id;
       formData.nisn = student.value.nisn;
       formData.nis = student.value.nis;
-      formData.no_telp = student.value.no_telp;
-      formData.alamat = student.value.alamat;
+      formData.telp_number = student.value.telp_number;
+      formData.address = student.value.address;
     });
 
     async function handleSubmit() {
@@ -200,8 +204,8 @@ export default {
         formData.tuition_id = "";
         formData.nisn = "";
         formData.nis = "";
-        formData.no_telp = "";
-        formData.alamat = "";
+        formData.telp_number = "";
+        formData.address = "";
       }
     }
 

@@ -1,13 +1,13 @@
 <template>
   <aside
     id="sidebar-desktop"
-    class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+    class="z-20 hidden w-68 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
   >
     <div class="py-4 text-gray-500 dark:text-gray-400">
       <a
         class="font-mulish inline-block ml-6 mt-4 text-xl font-extrabold text-gray-800 dark:text-gray-200"
       >
-        SPP App
+        Aplikasi SPP
       </a>
       <ul class="mt-8">
         <li class="relative my-1 mx-4">
@@ -35,180 +35,225 @@
       </ul>
       <ul>
         <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'PayTuition' }"
+          <button
+            class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
+            :class="{
+              'bg-green-50 text-green-500':
+                $route.name == 'Majors' ||
+                $route.name == 'Classes' ||
+                $route.name == 'Students' ||
+                $route.name == 'Officers' ||
+                $route.name == 'Tuitions',
+            }"
+            @click="isSchoolMenuOpen = !isSchoolMenuOpen"
+            aria-haspopup="true"
           >
+            <span class="inline-flex items-center">
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                ></path>
+              </svg>
+              <span class="ml-4">Managemen Sekolah</span>
+            </span>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path
-                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-              ></path>
-            </svg>
-            <span class="ml-4">Pembayaran SPP</span>
-          </router-link>
-        </li>
-        <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'Tuitions' }"
-          >
-            <svg
-              class="w-5 h-5"
+              class="w-4 h-4 transform ease-out duration-100"
+              :class="{
+                'rotate-0': isSchoolMenuOpen,
+                '-rotate-90': !isSchoolMenuOpen,
+              }"
               aria-hidden="true"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
               <path
-                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
               ></path>
             </svg>
-            <span class="ml-4">Data SPP</span>
-          </router-link>
-        </li>
-        <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'Majors' }"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          </button>
+          <transition name="submenu-popout">
+            <ul
+              v-show="isSchoolMenuOpen"
+              class="mx-2 p-2 mt-2 mb-4 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+              aria-label="submenu"
             >
-              <polyline points="21 8 21 21 3 21 3 8"></polyline>
-              <rect x="1" y="3" width="22" height="5"></rect>
-              <line x1="10" y1="12" x2="14" y2="12"></line>
-            </svg>
-            <span class="ml-4">Data Jurusan</span>
-          </router-link>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'Majors' }">
+                  Jurusan
+                </router-link>
+              </li>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'Classes' }">
+                  Kelas
+                </router-link>
+              </li>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'Students' }">
+                  Siswa
+                </router-link>
+              </li>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'Officers' }">
+                  Petugas
+                </router-link>
+              </li>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'Tuitions' }">
+                  Biaya SPP
+                </router-link>
+              </li>
+            </ul>
+          </transition>
         </li>
         <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'Classes' }"
+          <button
+            class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
+            @click="isPaymentMenuOpen = !isPaymentMenuOpen"
+            aria-haspopup="true"
           >
+            <span class="inline-flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path
+                  d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                ></path>
+              </svg>
+              <span class="ml-4">Pembayaran</span>
+            </span>
             <svg
-              class="w-5 h-5"
+              class="w-4 h-4 transform ease-out duration-100"
+              :class="{
+                'rotate-0': isPaymentMenuOpen,
+                '-rotate-90': !isPaymentMenuOpen,
+              }"
               aria-hidden="true"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
               <path
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
               ></path>
             </svg>
-            <span class="ml-4">Data Kelas</span>
-          </router-link>
-        </li>
-        <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'Officers' }"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          </button>
+          <transition name="submenu-popout">
+            <ul
+              v-show="isPaymentMenuOpen"
+              class="mx-2 p-2 mt-2 mb-4 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+              aria-label="submenu"
             >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <span class="ml-4">Data Petugas</span>
-          </router-link>
-        </li>
-        <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'Students' }"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-            <span class="ml-4">Data Siswa</span>
-          </router-link>
-        </li>
-        <li class="relative my-1 mx-4">
-          <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-            :to="{ name: 'PaymentHistory' }"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path
-                d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
-              ></path>
-            </svg>
-            <span class="ml-4">History Pembayaran</span>
-          </router-link>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'PayTuition' }">
+                  Pembayaran SPP
+                </router-link>
+              </li>
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'PaymentHistory' }">
+                  Data Pembayaran
+                </router-link>
+              </li>
+            </ul>
+          </transition>
         </li>
       </ul>
-      <div class="px-6 my-6">
-        <button
-          class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-        >
-          Administrator
-          <span class="ml-2" aria-hidden="true">+</span>
-        </button>
-      </div>
     </div>
   </aside>
 </template>
 
 <script>
-export default {};
+import { computed, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
+
+export default {
+  setup() {
+    const route = useRoute();
+    const isSchoolMenuOpen = ref(false);
+    const isPaymentMenuOpen = ref(false);
+    const path = computed(() => route.name);
+
+    onMounted(() => {
+      if (
+        path.value === "Majors" ||
+        path.value === "Classes" ||
+        path.value === "Students" ||
+        path.value === "Officers" ||
+        path.value === "Tuitions"
+      ) {
+        isSchoolMenuOpen.value = true;
+      } else {
+        isSchoolMenuOpen.value = false;
+      }
+
+      if (path.value === "PayTuition" || path.value === "PaymentHistory") {
+        isPaymentMenuOpen.value = true;
+      } else {
+        isPaymentMenuOpen.value = false;
+      }
+    });
+
+    return {
+      isSchoolMenuOpen,
+      isPaymentMenuOpen,
+    };
+  },
+};
 </script>
 
 <style lang="postcss" scoped>
 #sidebar-desktop .router-link-exact-active {
   @apply bg-green-50 text-green-500;
+}
+.submenu-popout-enter-from {
+  @apply opacity-25 max-h-0;
+}
+.submenu-popout-enter-active {
+  @apply transition-all ease-linear duration-300;
+}
+.submenu-popout-enter-to {
+  @apply opacity-100 max-h-96;
+}
+.submenu-popout-leave-from {
+  @apply opacity-100 max-h-96;
+}
+.submenu-popout-leave-active {
+  @apply transition-all ease-linear duration-300;
+}
+.submenu-popout-leave-to {
+  @apply opacity-0 max-h-0;
 }
 </style>

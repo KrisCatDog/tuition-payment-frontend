@@ -9,7 +9,11 @@ module.exports = {
       mulish: ["Mulish", ...defaultTheme.fontFamily.sans],
       dm: ["DM Sans", ...defaultTheme.fontFamily.sans],
     },
-    extend: {},
+    extend: {
+      width: {
+        68: "17rem",
+      },
+    },  
   },
   variants: {
     extend: {

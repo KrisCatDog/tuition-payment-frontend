@@ -20,20 +20,20 @@
       :isPending="isPending"
     >
       <InputGroup>
-        <TheLabel target="tahun" label="Tahun" />
-        <OutlineInput id="tahun" type="text" v-model="formData.tahun" />
+        <TheLabel target="year" label="Tahun" />
+        <OutlineInput id="year" type="text" v-model="formData.year" />
         <InputError
-          v-if="errors && errors.errors && errors.errors.tahun"
-          :label="errors.errors.tahun[0]"
+          v-if="errors && errors.errors && errors.errors.year"
+          :label="errors.errors.year[0]"
         />
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nominal" label="Nominal" />
-        <OutlineInput id="nominal" type="text" v-model="formData.nominal" />
+        <TheLabel target="amount" label="Nominal" />
+        <OutlineInput id="amount" type="text" v-model="formData.amount" />
         <InputError
-          v-if="errors && errors.errors && errors.errors.nominal"
-          :label="errors.errors.nominal[0]"
+          v-if="errors && errors.errors && errors.errors.amount"
+          :label="errors.errors.amount[0]"
         />
       </InputGroup>
     </FormModal>
@@ -224,8 +224,8 @@ export default {
     const isModalOpen = ref(false);
     const isModalAlertOpen = ref(false);
     const formData = reactive({
-      tahun: "",
-      nominal: "",
+      year: "",
+      amount: "",
     });
 
     onMounted(async () => {
@@ -243,8 +243,8 @@ export default {
         isModalOpen.value = false;
         isModalAlertOpen.value = true;
 
-        formData.tahun = "";
-        formData.nominal = "";
+        formData.year = "";
+        formData.amount = "";
       }
     }
 

@@ -24,11 +24,11 @@
         <OutlineInput
           id="kompetensi-keahlian"
           type="text"
-          v-model="formData.kompetensi_keahlian"
+          v-model="formData.name"
         />
         <InputError
-          v-if="errors && errors.errors && errors.errors.kompetensi_keahlian"
-          :label="errors.errors.kompetensi_keahlian[0]"
+          v-if="errors && errors.errors && errors.errors.name"
+          :label="errors.errors.name[0]"
         />
       </InputGroup>
     </FormModal>
@@ -213,7 +213,7 @@ export default {
     const isModalOpen = ref(false);
     const isModalAlertOpen = ref(false);
     const formData = reactive({
-      kompetensi_keahlian: "",
+      name: "",
     });
 
     onMounted(async () => {
@@ -231,7 +231,7 @@ export default {
         isModalOpen.value = false;
         isModalAlertOpen.value = true;
 
-        formData.kompetensi_keahlian = "";
+        formData.name = "";
       }
     }
 
