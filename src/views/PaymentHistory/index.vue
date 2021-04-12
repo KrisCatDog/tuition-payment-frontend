@@ -21,7 +21,6 @@
                 <th class="px-8 py-3">Nama Petugas</th>
                 <th class="px-8 py-3">Jumlah Bayar</th>
                 <th class="px-8 py-3">Di Bayar Tanggal</th>
-                <th class="px-8 py-3">Actions</th>
               </tr>
             </thead>
             <tbody
