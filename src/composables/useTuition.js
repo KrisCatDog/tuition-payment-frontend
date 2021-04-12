@@ -10,12 +10,12 @@ const state = reactive({
   isPending: false,
 });
 
-const fetchTuition = async (page, perPage = 15) => {
+const fetchTuition = async (page, perPage = 15, search = "") => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/tuitions?page=${page}&per_page=${perPage}`
+      `/api/tuitions?page=${page}&per_page=${perPage}&search=${search}`
     );
 
     state.tuitions = res.data.data;
