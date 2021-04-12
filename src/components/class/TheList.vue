@@ -5,7 +5,8 @@
     class="text-gray-700 dark:text-gray-400"
   >
     <td class="px-8 py-3 text-sm font-bold">{{ iclass.id }}</td>
-    <td class="px-8 py-3 text-sm font-medium">{{ iclass.nama_kelas }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ iclass.grade }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ iclass.code }}</td>
     <td class="px-8 py-3 text-sm font-medium">
       {{ iclass.major.name }}
     </td>
@@ -70,11 +71,20 @@
     </InputGroup>
 
     <InputGroup>
-      <TheLabel target="nama-kelas" label="Nama Kelas" />
-      <OutlineInput id="nama-kelas" type="text" v-model="formData.nama_kelas" />
+      <TheLabel target="nama-kelas" label="Tingkatan Kelas" />
+      <OutlineInput id="nama-kelas" type="text" v-model="formData.grade" />
       <InputError
-        v-if="errors && errors.errors && errors.errors.nama_kelas"
-        :label="errors.errors.nama_kelas[0]"
+        v-if="errors && errors.errors && errors.errors.grade"
+        :label="errors.errors.grade[0]"
+      />
+    </InputGroup>
+
+    <InputGroup>
+      <TheLabel target="nama-kelas" label="Nomor Kelas" />
+      <OutlineInput id="nama-kelas" type="text" v-model="formData.code" />
+      <InputError
+        v-if="errors && errors.errors && errors.errors.code"
+        :label="errors.errors.code[0]"
       />
     </InputGroup>
   </FormModal>
@@ -82,7 +92,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="'Anda akan menghapus data kelas ' + formData.nama_kelas"
+    :description="'Anda akan menghapus data kelas ' + formData.grade"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -136,7 +146,8 @@ export default {
     const formData = reactive({
       id: "",
       major_id: "",
-      nama_kelas: "",
+      grade: "",
+      code: "",
     });
     const modalData = reactive({
       description: "",
@@ -150,7 +161,8 @@ export default {
 
       formData.id = iclass.id;
       formData.major_id = iclass.major.id;
-      formData.nama_kelas = iclass.nama_kelas;
+      formData.grade = iclass.grade;
+      formData.code = iclass.code;
     }
 
     function showDeleteModal(iclass) {
@@ -158,7 +170,8 @@ export default {
 
       formData.id = iclass.id;
       formData.major_id = iclass.major.id;
-      formData.nama_kelas = iclass.nama_kelas;
+      formData.grade = iclass.grade;
+      formData.code = iclass.code;
     }
 
     function toggleModalAlert() {
