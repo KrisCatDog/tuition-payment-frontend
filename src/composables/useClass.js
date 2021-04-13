@@ -10,17 +10,20 @@ const state = reactive({
   isPending: false,
 });
 
-const fetchClass = async (page, perPage = 15) => {
+const fetchClass = async (page, perPage = 15, search = "") => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/classes?page=${page}&per_page=${perPage}`
+      `/api/classes?page=${page}&per_page=${perPage}&search=${search}`
     );
 
     state.classes = res.data.data;
     state.formattedClasses = state.classes.map((iclass) => {
-      return { id: iclass.id, text: iclass.nama_kelas };
+      return {
+        id: iclass.id,
+        text: `${iclass.grade} ${iclass.major.name} ${iclass.code}`,
+      };
     });
     state.paginationMeta = res.data.meta;
 

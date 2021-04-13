@@ -1,11 +1,13 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import "./assets/tailwind.css";
+import "./assets/css/tailwind.css";
+import "./assets/css/fonts.css";
 import ApiService from "./services/api";
 import titleMixin from "./mixins/titleMixin";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
 import Select2 from "vue3-select2-component";
+import store from "./store";
 
 ApiService.init(process.env.VUE_APP_API_ORIGIN);
 
@@ -25,6 +27,7 @@ const options = {
 
 const app = createApp(App)
   .use(router)
+  .use(store)
   .mixin(titleMixin)
   .use(VueProgressBar, options)
   .component("Select2", Select2)

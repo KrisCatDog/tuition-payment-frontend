@@ -6,7 +6,7 @@
   >
     <td class="px-8 py-3 text-sm font-bold">{{ major.id }}</td>
     <td class="px-8 py-3 text-sm font-medium">
-      {{ major.kompetensi_keahlian }}
+      {{ major.name }}
     </td>
     <td class="px-8 py-3">
       <div class="flex items-center space-x-4 text-sm">
@@ -60,11 +60,11 @@
       <OutlineInput
         id="kompetensi-keahlian"
         type="text"
-        v-model="formData.kompetensi_keahlian"
+        v-model="formData.name"
       />
       <InputError
-        v-if="errors && errors.errors && errors.errors.kompetensi_keahlian"
-        :label="errors.errors.kompetensi_keahlian[0]"
+        v-if="errors && errors.errors && errors.errors.name"
+        :label="errors.errors.name[0]"
       />
     </InputGroup>
   </FormModal>
@@ -72,9 +72,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="
-      'Anda akan menghapus data jurusan ' + formData.kompetensi_keahlian
-    "
+    :description="'Anda akan menghapus data jurusan ' + formData.name"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -125,7 +123,7 @@ export default {
     const isModalAlertOpen = ref(false);
     const formData = reactive({
       id: "",
-      kompetensi_keahlian: "",
+      name: "",
     });
     const modalData = reactive({
       description: "",
@@ -138,14 +136,14 @@ export default {
       isEditModalOpen.value = true;
 
       formData.id = major.id;
-      formData.kompetensi_keahlian = major.kompetensi_keahlian;
+      formData.name = major.name;
     }
 
     function showDeleteModal(major) {
       isDeleteModalOpen.value = true;
 
       formData.id = major.id;
-      formData.kompetensi_keahlian = major.kompetensi_keahlian;
+      formData.name = major.name;
     }
 
     function toggleModalAlert() {
@@ -163,7 +161,7 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.kompetensi_keahlian = "";
+        formData.name = "";
       }
     }
 
@@ -178,7 +176,7 @@ export default {
         isModalAlertOpen.value = true;
 
         formData.id = "";
-        formData.kompetensi_keahlian = "";
+        formData.name = "";
       }
     }
 

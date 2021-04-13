@@ -7,8 +7,35 @@
     </h2>
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
+      <div class="w-1/2 mt-1 flex rounded-md shadow-sm">
+        <span
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current w-6 h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input
+          @input="handleFetch(paginationMeta.current_page, searchKeyword)"
+          v-model="searchKeyword"
+          type="text"
+          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+          placeholder="Search in Nama Siswa, Nama Petugas, Jumlah Bayar"
+        />
+      </div>
+
       <div
-        class="border dark:border-gray-700 w-full overflow-hidden rounded-lg"
+        class="mt-3 border dark:border-gray-700 w-full overflow-hidden rounded-lg"
       >
         <div class="w-full overflow-x-auto">
           <table class="w-full whitespace-no-wrap">
@@ -21,7 +48,6 @@
                 <th class="px-8 py-3">Nama Petugas</th>
                 <th class="px-8 py-3">Jumlah Bayar</th>
                 <th class="px-8 py-3">Di Bayar Tanggal</th>
-                <th class="px-8 py-3">Actions</th>
               </tr>
             </thead>
             <tbody
@@ -169,8 +195,8 @@ export default {
       await fetchPayment(1, perPage.value);
     });
 
-    async function handleFetch(page) {
-      await fetchPayment(page, perPage.value);
+    async function handleFetch(page, search = "") {
+      await fetchPayment(page, perPage.value, search);
     }
 
     function toggleModalAlert() {

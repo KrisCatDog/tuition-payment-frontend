@@ -24,11 +24,11 @@
         <OutlineInput
           id="kompetensi-keahlian"
           type="text"
-          v-model="formData.kompetensi_keahlian"
+          v-model="formData.name"
         />
         <InputError
-          v-if="errors && errors.errors && errors.errors.kompetensi_keahlian"
-          :label="errors.errors.kompetensi_keahlian[0]"
+          v-if="errors && errors.errors && errors.errors.name"
+          :label="errors.errors.name[0]"
         />
       </InputGroup>
     </FormModal>
@@ -43,8 +43,35 @@
     />
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
+      <div class="w-1/2 mt-1 flex rounded-md shadow-sm">
+        <span
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current w-6 h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input
+          @input="handleFetch(paginationMeta.current_page, searchKeyword)"
+          v-model="searchKeyword"
+          type="text"
+          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+          placeholder="Search in Nama"
+        />
+      </div>
+
       <div
-        class="border dark:border-gray-700 w-full overflow-hidden rounded-lg"
+        class="mt-3 border dark:border-gray-700 w-full overflow-hidden rounded-lg"
       >
         <div class="w-full overflow-x-auto">
           <table class="w-full whitespace-no-wrap">
@@ -53,7 +80,7 @@
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
               >
                 <th class="px-8 py-3">No</th>
-                <th class="px-8 py-3">Kompetensi Keahlian</th>
+                <th class="px-8 py-3">Nama</th>
                 <th class="px-8 py-3">Actions</th>
               </tr>
             </thead>
@@ -213,15 +240,16 @@ export default {
     const isModalOpen = ref(false);
     const isModalAlertOpen = ref(false);
     const formData = reactive({
-      kompetensi_keahlian: "",
+      name: "",
     });
+    const searchKeyword = ref("");
 
     onMounted(async () => {
       await fetchMajor(1, perPage.value);
     });
 
-    async function handleFetch(page) {
-      await fetchMajor(page, perPage.value);
+    async function handleFetch(page, search = "") {
+      await fetchMajor(page, perPage.value, search);
     }
 
     async function handleSubmit() {
@@ -231,7 +259,7 @@ export default {
         isModalOpen.value = false;
         isModalAlertOpen.value = true;
 
-        formData.kompetensi_keahlian = "";
+        formData.name = "";
       }
     }
 
@@ -249,6 +277,7 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
+      searchKeyword,
     };
   },
 };

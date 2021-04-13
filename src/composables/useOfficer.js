@@ -9,12 +9,12 @@ const state = reactive({
   isPending: false,
 });
 
-const fetchOfficer = async (page, perPage = 15) => {
+const fetchOfficer = async (page, perPage = 15, search = "") => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/officers?page=${page}&per_page=${perPage}`
+      `/api/officers?page=${page}&per_page=${perPage}&search=${search}`
     );
 
     state.officers = res.data.data;
