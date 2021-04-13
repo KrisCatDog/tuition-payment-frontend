@@ -79,9 +79,8 @@ import { useStore } from "vuex";
 export default {
   async setup() {
     const store = useStore();
-    const fetchHome = () => store.dispatch("home/fetchHome");
 
-    await fetchHome();
+    await store.dispatch("home/fetchHome");
 
     return {
       totalStudent: computed(() => store.getters["home/getTotalStudent"]),
