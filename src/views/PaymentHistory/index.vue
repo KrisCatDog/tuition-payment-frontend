@@ -3,7 +3,7 @@
     <h2
       class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
     >
-      History Pembayaran
+      Data Pembayaran
     </h2>
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
@@ -180,7 +180,7 @@ const TheList = defineAsyncComponent(() =>
 );
 
 export default {
-  title: "History Pembayaran",
+  title: "Data Pembayaran",
   components: {
     AppLayout,
     TheList,
