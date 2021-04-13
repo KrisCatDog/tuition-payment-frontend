@@ -190,6 +190,62 @@
             </ul>
           </transition>
         </li>
+        <li class="relative my-1 mx-4">
+          <button
+            class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
+            @click="isReportMenuOpen = !isReportMenuOpen"
+            aria-haspopup="true"
+          >
+            <span class="inline-flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                <rect x="1" y="3" width="22" height="5"></rect>
+                <line x1="10" y1="12" x2="14" y2="12"></line>
+              </svg>
+              <span class="ml-4">Laporan</span>
+            </span>
+            <svg
+              class="w-4 h-4 transform ease-out duration-100"
+              :class="{
+                'rotate-0': isReportMenuOpen,
+                '-rotate-90': !isReportMenuOpen,
+              }"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <transition name="submenu-popout">
+            <ul
+              v-show="isReportMenuOpen"
+              class="mx-2 p-2 mt-2 mb-4 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+              aria-label="submenu"
+            >
+              <li
+                class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              >
+                <router-link class="w-full" :to="{ name: 'PaymentReports' }">
+                  Laporan Pembayaran
+                </router-link>
+              </li>
+            </ul>
+          </transition>
+        </li>
       </ul>
     </div>
   </aside>
@@ -204,31 +260,42 @@ export default {
     const route = useRoute();
     const isSchoolMenuOpen = ref(false);
     const isPaymentMenuOpen = ref(false);
+    const isReportMenuOpen = ref(false);
     const path = computed(() => route.name);
 
     onMounted(() => {
-      if (
-        path.value === "Majors" ||
-        path.value === "Classes" ||
-        path.value === "Students" ||
-        path.value === "Officers" ||
-        path.value === "Tuitions"
-      ) {
-        isSchoolMenuOpen.value = true;
-      } else {
-        isSchoolMenuOpen.value = false;
+      switch (path.value) {
+        case "Majors" || "Classes" || "Students" || "Officers" || "Tuitions":
+          isSchoolMenuOpen.value = true;
+          break;
+        default:
+          isSchoolMenuOpen.value = false;
+          break;
       }
 
-      if (path.value === "PayTuition" || path.value === "PaymentHistory") {
-        isPaymentMenuOpen.value = true;
-      } else {
-        isPaymentMenuOpen.value = false;
+      switch (path.value) {
+        case "PayTuition" || "PaymentHistory":
+          isPaymentMenuOpen.value = true;
+          break;
+        default:
+          isPaymentMenuOpen.value = false;
+          break;
+      }
+
+      switch (path.value) {
+        case "PaymentReports":
+          isReportMenuOpen.value = true;
+          break;
+        default:
+          isReportMenuOpen.value = false;
+          break;
       }
     });
 
     return {
       isSchoolMenuOpen,
       isPaymentMenuOpen,
+      isReportMenuOpen,
     };
   },
 };
