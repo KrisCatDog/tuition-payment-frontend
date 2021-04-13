@@ -10,12 +10,12 @@ const state = reactive({
   isPending: false,
 });
 
-const fetchPayment = async (page, perPage = 15) => {
+const fetchPayment = async (page, perPage = 15, search = "") => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/payments?page=${page}&per_page=${perPage}`
+      `/api/payments?page=${page}&per_page=${perPage}&search=${search}`
     );
 
     state.payments = res.data.data;

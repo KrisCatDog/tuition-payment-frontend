@@ -10,12 +10,12 @@ const state = reactive({
   isPending: false,
 });
 
-const fetchMajor = async (page, perPage = 15) => {
+const fetchMajor = async (page, perPage = 15, search = "") => {
   state.isPending = true;
 
   try {
     const res = await ApiService.get(
-      `/api/majors?page=${page}&per_page=${perPage}`
+      `/api/majors?page=${page}&per_page=${perPage}&search=${search}`
     );
 
     state.majors = res.data.data;
