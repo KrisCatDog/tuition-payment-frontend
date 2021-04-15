@@ -5,15 +5,13 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ["Quicksand", ...defaultTheme.fontFamily.sans],
-      mulish: ["Mulish", ...defaultTheme.fontFamily.sans],
-      dm: ["DM Sans", ...defaultTheme.fontFamily.sans],
+      sans: ["Inter var", ...defaultTheme.fontFamily.sans],
     },
     extend: {
       width: {
         68: "17rem",
       },
-    },  
+    },
   },
   variants: {
     extend: {
