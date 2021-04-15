@@ -1,8 +1,6 @@
 <template>
   <AppLayout>
-    <h2
-      class="font-mulish my-6 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-    >
+    <h2 class="my-6 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
       Home
     </h2>
 
@@ -487,9 +485,7 @@
     </div> -->
 
     <!-- Charts -->
-    <h2
-      class="my-6 font-mulish text-2xl font-semibold text-gray-700 dark:text-gray-200"
-    >
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Statistik
     </h2>
     <div class="grid gap-6 mb-8 md:grid-cols-2">

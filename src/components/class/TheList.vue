@@ -53,7 +53,7 @@
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data Kelas"
-    buttonText="Submit"
+    buttonText="Simpan"
     :onConfirm="handleUpdate"
     :isPending="isPending"
   >

@@ -5,10 +5,10 @@
         <img src="@/assets/svg/login-draw.svg" alt="login-draw" />
 
         <div class="mt-16">
-          <h1 class="font-mulish text-white text-3xl font-extrabold">
+          <h1 class="text-white text-3xl font-extrabold">
             Aplikasi Pembayaran SPP
           </h1>
-          <h2 class="font-mulish text-white text-2xl">SMKN 13 Bandung</h2>
+          <h2 class="text-white text-2xl">SMKN 13 Bandung</h2>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
         class="w-full sm:w-96 2xl:w-2/5 flex flex-col"
         autocomplete="off"
       >
-        <h3 class="font-mulish text-3xl font-bold">Login</h3>
+        <h3 class="text-3xl font-bold">Login</h3>
         <div class="flex flex-col mt-12 mb-6">
           <label
             for="username"

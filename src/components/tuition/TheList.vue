@@ -50,7 +50,7 @@
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data SPP"
-    buttonText="Submit"
+    buttonText="Simpan"
     :onConfirm="handleUpdate"
     :isPending="isPending"
   >

@@ -1,8 +1,6 @@
 <template>
   <AppLayout>
-    <h2
-      class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-    >
+    <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
       Laporan Pembayaran
     </h2>
 
