@@ -31,8 +31,8 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Tingkatan Kelas" />
-        <OutlineInput id="nama-kelas" type="text" v-model="formData.grade" />
+        <TheLabel target="grade" label="Tingkatan Kelas" />
+        <OutlineInput id="grade" type="text" v-model="formData.grade" />
         <InputError
           v-if="errors && errors.errors && errors.errors.grade"
           :label="errors.errors.grade[0]"
@@ -40,8 +40,8 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Nomor Kelas" />
-        <OutlineInput id="nama-kelas" type="text" v-model="formData.code" />
+        <TheLabel target="code" label="Nomor Kelas" />
+        <OutlineInput id="code" type="text" v-model="formData.code" />
         <InputError
           v-if="errors && errors.errors && errors.errors.code"
           :label="errors.errors.code[0]"
