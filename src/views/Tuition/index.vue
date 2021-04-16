@@ -85,7 +85,7 @@
                 <th class="px-8 py-3">No</th>
                 <th class="px-8 py-3">Tahun</th>
                 <th class="px-8 py-3">Nominal</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody

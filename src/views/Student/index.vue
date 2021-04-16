@@ -120,7 +120,7 @@
                 <th class="px-8 py-3">Tingkatan Kelas</th>
                 <th class="px-8 py-3">Nomor Kelas</th>
                 <th class="px-8 py-3">Jurusan</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody

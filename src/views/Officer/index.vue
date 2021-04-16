@@ -112,7 +112,7 @@
                 <th class="px-8 py-3">Nama Petugas</th>
                 <th class="px-8 py-3">Username</th>
                 <th class="px-8 py-3">Role</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody
