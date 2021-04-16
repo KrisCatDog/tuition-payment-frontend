@@ -1,69 +1,117 @@
 <template>
-  <transition name="backdrop-fade">
-    <div
-      v-show="modelValue"
-      @click.self="$emit('update:modelValue', false)"
-      class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center justify-center"
+  <TransitionRoot as="template" :show="modelValue">
+    <Dialog
+      as="div"
+      static
+      class="fixed z-20 inset-0 overflow-y-auto"
+      @close="$emit('update:modelValue', isPending)"
+      :open="modelValue"
     >
-      <transition name="modal-popout">
-        <div
-          v-show="modelValue"
-          class="w-11/12 px-6 py-4 overflow-hidden bg-white dark:bg-gray-800 rounded-lg sm:m-4 sm:max-w-xl"
+      <div
+        class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+      >
+        <TransitionChild
+          as="template"
+          enter="ease-out duration-300"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="ease-in duration-200"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
         >
-          <header class="flex justify-between -mx-6 -my-4 px-6 py-4 bg-gray-50">
-            <h4 class="text-xl text-gray-800 font-extrabold">E-SPP</h4>
-            <button
-              class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded focus:outline-none focus:ring-2 dark:hover:text-gray-200 hover: hover:text-gray-700"
-              aria-label="close"
-              @click="$emit('update:modelValue', false)"
-            >
-              <svg
-                class="w-4 h-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                role="img"
-                aria-hidden="true"
-              >
-                <path
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                  fill-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-          </header>
-          <div class="my-8">
-            <p
-              class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
-            >
-              {{ title }}
-            </p>
-            <p class="text-sm text-gray-700 dark:text-gray-400">
-              {{ description }}
-            </p>
-          </div>
-          <footer
-            class="flex flex-row items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-4 bg-gray-50 dark:bg-gray-800"
+          <DialogOverlay
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          />
+        </TransitionChild>
+
+        <span
+          class="hidden sm:inline-block sm:align-middle sm:h-screen"
+          aria-hidden="true"
+          >&#8203;</span
+        >
+        <TransitionChild
+          as="template"
+          enter="ease-out duration-300"
+          enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          enter-to="opacity-100 translate-y-0 sm:scale-100"
+          leave="ease-in duration-200"
+          leave-from="opacity-100 translate-y-0 sm:scale-100"
+          leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        >
+          <div
+            class="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 align-middle sm:max-w-lg sm:w-full"
           >
-            <BasicDeleteButton
-              type="button"
-              @click.prevent="onConfirm"
-              :isSubmitted="isPending"
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div
+                  class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
+                >
+                  <ExclamationIcon
+                    class="h-6 w-6 text-red-600"
+                    aria-hidden="true"
+                  />
+                </div>
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <DialogTitle
+                    as="h3"
+                    class="text-lg leading-6 font-medium text-gray-900"
+                  >
+                    {{ title }}
+                  </DialogTitle>
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-500">
+                      {{ description }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
             >
-              {{ buttonText }}
-            </BasicDeleteButton>
-          </footer>
-        </div>
-      </transition>
-    </div>
-  </transition>
+              <button
+                :class="{
+                  'opacity-75 cursor-not-allowed': isPending,
+                }"
+                type="button"
+                class="w-full inline-flex justify-center items-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                @click="onConfirm"
+              >
+                <CircleLoading v-show="isPending" />
+                <span>{{ buttonText }}</span>
+              </button>
+              <button
+                :disabled="isPending"
+                :class="{
+                  'disabled:opacity-75 disabled:cursor-not-allowed': isPending,
+                }"
+                type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                @click="$emit('update:modelValue', isPending)"
+                ref="cancelButtonRef"
+              >
+                Batal
+              </button>
+            </div>
+          </div>
+        </TransitionChild>
+      </div>
+    </Dialog>
+  </TransitionRoot>
 </template>
 
 <script>
-import BasicDeleteButton from "@/components/ui/BasicDeleteButton";
+import {
+  Dialog,
+  DialogOverlay,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
+import { ExclamationIcon } from "@heroicons/vue/outline";
+import CircleLoading from "./CircleLoading.vue";
 
 export default {
-  components: { BasicDeleteButton },
   props: {
     modelValue: {
       type: Boolean,
@@ -79,7 +127,7 @@ export default {
     },
     description: {
       type: String,
-      required: false,
+      required: true,
     },
     buttonText: {
       type: String,
@@ -90,40 +138,14 @@ export default {
       required: true,
     },
   },
+  components: {
+    Dialog,
+    DialogOverlay,
+    DialogTitle,
+    TransitionChild,
+    TransitionRoot,
+    ExclamationIcon,
+    CircleLoading,
+  },
 };
 </script>
-
-<style lang="postcss" scoped>
-.backdrop-fade-enter-from,
-.backdrop-fade-leave-to {
-  @apply opacity-0;
-}
-.backdrop-fade-enter-active {
-  @apply transition ease-out duration-150;
-}
-.backdrop-fade-enter-to {
-  @apply opacity-100;
-}
-.backdrop-fade-leave-from {
-  @apply opacity-100;
-}
-.backdrop-fade-leave-active {
-  @apply transition ease-in duration-150;
-}
-.modal-popout-enter-from,
-.modal-popout-leave-to {
-  @apply opacity-0 transform translate-y-1/2;
-}
-.modal-popout-enter-active {
-  @apply transition ease-out duration-150;
-}
-.modal-popout-enter-to {
-  @apply opacity-100;
-}
-.modal-popout-leave-from {
-  @apply opacity-100;
-}
-.modal-popout-leave-active {
-  @apply transition ease-in duration-150;
-}
-</style>
