@@ -82,12 +82,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="
-      'Anda akan menghapus data spp tahun ' +
-      formData.year +
-      ' dengan nominal ' +
-      formData.amount
-    "
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -162,6 +157,7 @@ export default {
       formData.id = tuition.id;
       formData.year = tuition.year;
       formData.amount = tuition.amount;
+      modalData.description = `Apakah anda yakin ingin menghapus data spp tahun ${tuition.year} dengan nominal ${tuition.amount}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

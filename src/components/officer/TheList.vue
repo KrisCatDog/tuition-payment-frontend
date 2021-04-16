@@ -83,9 +83,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="
-      'Anda akan menghapus data Petugas dengan nama ' + formData.name
-    "
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -162,6 +160,7 @@ export default {
       formData.id = officer.id;
       formData.name = officer.name;
       formData.username = officer.username;
+      modalData.description = `Apakah anda yakin ingin menghapus data petugas ${officer.name}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

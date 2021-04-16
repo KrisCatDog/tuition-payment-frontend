@@ -77,8 +77,8 @@
     </InputGroup>
 
     <InputGroup>
-      <TheLabel target="nama-kelas" label="Tingkatan Kelas" />
-      <OutlineInput id="nama-kelas" type="text" v-model="formData.grade" />
+      <TheLabel target="grade" label="Tingkatan Kelas" />
+      <OutlineInput id="grade" type="text" v-model="formData.grade" />
       <InputError
         v-if="errors && errors.errors && errors.errors.grade"
         :label="errors.errors.grade[0]"
@@ -86,8 +86,8 @@
     </InputGroup>
 
     <InputGroup>
-      <TheLabel target="nama-kelas" label="Nomor Kelas" />
-      <OutlineInput id="nama-kelas" type="text" v-model="formData.code" />
+      <TheLabel target="code" label="Nomor Kelas" />
+      <OutlineInput id="code" type="text" v-model="formData.code" />
       <InputError
         v-if="errors && errors.errors && errors.errors.code"
         :label="errors.errors.code[0]"
@@ -98,7 +98,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="'Anda akan menghapus data kelas ' + modalData.description"
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -175,7 +175,7 @@ export default {
       isDeleteModalOpen.value = true;
 
       formData.id = iclass.id;
-      modalData.description = `${iclass.grade} ${iclass.major.name} ${iclass.code}`;
+      modalData.description = `Apakah anda yakin ingin menghapus data kelas ${iclass.grade} ${iclass.major.name} ${iclass.code}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

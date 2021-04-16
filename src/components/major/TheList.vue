@@ -92,12 +92,13 @@
     :onConfirm="toggleModalAlert"
   />
 
-  <TestModal
+  <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    description="Apakah anda yakin ingin menghapus data ini? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan."
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
+    :isPending="isPending"
   />
 </template>
 
@@ -111,7 +112,6 @@ import InputError from "@/components/ui/InputError";
 import InputGroup from "@/components/ui/InputGroup";
 import ClassicModal from "@/components/ui/ClassicModal";
 import AppModal from "@/components/ui/AppModal";
-import TestModal from "@/components/ui/TestModal";
 
 export default {
   components: {
@@ -122,7 +122,6 @@ export default {
     InputGroup,
     ClassicModal,
     AppModal,
-    TestModal,
   },
   async setup() {
     const {
@@ -159,6 +158,7 @@ export default {
 
       formData.id = major.id;
       formData.name = major.name;
+      modalData.description = `Apakah anda yakin ingin menghapus data jurusan ${major.name}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {
