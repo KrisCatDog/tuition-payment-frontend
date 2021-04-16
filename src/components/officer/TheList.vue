@@ -48,6 +48,12 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="officers.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data petugas tidak di temukan.
+    </td>
+  </tr>
+
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data Petugas"

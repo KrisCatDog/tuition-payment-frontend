@@ -55,6 +55,12 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="students.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data siswa tidak di temukan.
+    </td>
+  </tr>
+
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"

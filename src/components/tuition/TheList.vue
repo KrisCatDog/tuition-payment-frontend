@@ -47,6 +47,12 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="tuitions.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data biaya spp tidak di temukan.
+    </td>
+  </tr>
+
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data SPP"

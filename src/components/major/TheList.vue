@@ -48,6 +48,12 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="majors.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data jurusan tidak di temukan.
+    </td>
+  </tr>
+
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data Jurusan"
@@ -70,7 +76,6 @@
   </FormModal>
 
   <ClassicModal
-    v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
     :description="'Anda akan menghapus data jurusan ' + formData.name"
     buttonText="Hapus"
@@ -86,6 +91,14 @@
     :modalIcon="modalData.modalIcon"
     :onConfirm="toggleModalAlert"
   />
+
+  <TestModal
+    v-model="isDeleteModalOpen"
+    title="Apakah anda yakin?"
+    description="Apakah anda yakin ingin menghapus data ini? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan."
+    buttonText="Hapus"
+    :onConfirm="handleDestroy"
+  />
 </template>
 
 <script>
@@ -98,6 +111,7 @@ import InputError from "@/components/ui/InputError";
 import InputGroup from "@/components/ui/InputGroup";
 import ClassicModal from "@/components/ui/ClassicModal";
 import AppModal from "@/components/ui/AppModal";
+import TestModal from "@/components/ui/TestModal";
 
 export default {
   components: {
@@ -108,6 +122,7 @@ export default {
     InputGroup,
     ClassicModal,
     AppModal,
+    TestModal,
   },
   async setup() {
     const {
