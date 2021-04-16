@@ -5,9 +5,9 @@
   >
     <div class="py-4 text-gray-500 dark:text-gray-400">
       <a
-        class="font-mulish inline-block ml-6 mt-4 text-xl font-extrabold text-gray-800 dark:text-gray-200"
+        class="inline-block ml-6 mt-4 text-xl font-extrabold text-gray-800 dark:text-gray-200"
       >
-        Aplikasi SPP
+        E-SPP
       </a>
       <ul class="mt-8">
         <li class="relative my-1 mx-4">
@@ -265,7 +265,19 @@ export default {
 
     onMounted(() => {
       switch (path.value) {
-        case "Majors" || "Classes" || "Students" || "Officers" || "Tuitions":
+        case "Majors":
+          isSchoolMenuOpen.value = true;
+          break;
+        case "Classes":
+          isSchoolMenuOpen.value = true;
+          break;
+        case "Students":
+          isSchoolMenuOpen.value = true;
+          break;
+        case "Officers":
+          isSchoolMenuOpen.value = true;
+          break;
+        case "Tuitions":
           isSchoolMenuOpen.value = true;
           break;
         default:
@@ -274,7 +286,10 @@ export default {
       }
 
       switch (path.value) {
-        case "PayTuition" || "PaymentHistory":
+        case "PayTuition":
+          isPaymentMenuOpen.value = true;
+          break;
+        case "PaymentHistory":
           isPaymentMenuOpen.value = true;
           break;
         default:

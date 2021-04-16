@@ -11,9 +11,7 @@
           class="w-11/12 px-6 py-4 overflow-hidden bg-white dark:bg-gray-800 rounded-lg sm:m-4 sm:max-w-xl"
         >
           <header class="flex justify-between -mx-6 -my-4 px-6 py-4 bg-gray-50">
-            <h4 class="text-xl text-gray-800 font-extrabold font-mulish">
-              SPP App
-            </h4>
+            <h4 class="text-xl text-gray-800 font-extrabold">E-SPP</h4>
             <button
               class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded focus:outline-none focus:ring-2 dark:hover:text-gray-200 hover: hover:text-gray-700"
               aria-label="close"

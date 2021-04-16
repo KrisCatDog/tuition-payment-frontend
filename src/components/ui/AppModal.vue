@@ -11,9 +11,7 @@
           class="w-11/12 px-6 py-4 overflow-hidden bg-white dark:bg-gray-800 rounded-lg sm:m-4 sm:max-w-xl"
         >
           <header class="flex justify-center -mx-6 -my-4 px-6 py-4 bg-gray-50">
-            <h4 class="text-xl text-gray-800 font-extrabold font-mulish">
-              SPP App
-            </h4>
+            <h4 class="text-xl text-gray-800 font-extrabold">E-SPP</h4>
           </header>
           <div class="my-8 text-center flex flex-col items-center">
             <svg
