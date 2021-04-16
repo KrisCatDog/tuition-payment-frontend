@@ -484,8 +484,7 @@
       </div>
     </div> -->
 
-    <!-- Charts -->
-    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+    <!-- <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
       Statistik
     </h2>
     <div class="grid gap-6 mb-8 md:grid-cols-2">
@@ -497,7 +496,6 @@
         <div
           class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
         >
-          <!-- Chart legend -->
           <div class="flex items-center">
             <span
               class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"
@@ -526,7 +524,6 @@
         <div
           class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
         >
-          <!-- Chart legend -->
           <div class="flex items-center">
             <span
               class="inline-block w-3 h-3 mr-1 bg-red-600 rounded-full"
@@ -541,7 +538,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </AppLayout>
 </template>
 
