@@ -55,10 +55,16 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="students.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data siswa tidak di temukan.
+    </td>
+  </tr>
+
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="'Anda akan menghapus data siswa dengan nama ' + formData.name"
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -111,6 +117,7 @@ export default {
 
       formData.id = student.id;
       formData.name = student.user.name;
+      modalData.description = `Apakah anda yakin ingin menghapus data siswa ${student.user.name}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

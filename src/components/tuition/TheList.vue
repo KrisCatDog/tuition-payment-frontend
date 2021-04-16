@@ -47,10 +47,16 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="tuitions.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data biaya spp tidak di temukan.
+    </td>
+  </tr>
+
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data SPP"
-    buttonText="Submit"
+    buttonText="Simpan"
     :onConfirm="handleUpdate"
     :isPending="isPending"
   >
@@ -76,12 +82,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="
-      'Anda akan menghapus data spp tahun ' +
-      formData.year +
-      ' dengan nominal ' +
-      formData.amount
-    "
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -156,6 +157,7 @@ export default {
       formData.id = tuition.id;
       formData.year = tuition.year;
       formData.amount = tuition.amount;
+      modalData.description = `Apakah anda yakin ingin menghapus data spp tahun ${tuition.year} dengan nominal ${tuition.amount}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

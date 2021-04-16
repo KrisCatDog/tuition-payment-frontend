@@ -48,10 +48,16 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="majors.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data jurusan tidak di temukan.
+    </td>
+  </tr>
+
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data Jurusan"
-    buttonText="Submit"
+    buttonText="Simpan"
     :onConfirm="handleUpdate"
     :isPending="isPending"
   >
@@ -70,7 +76,6 @@
   </FormModal>
 
   <ClassicModal
-    v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
     :description="'Anda akan menghapus data jurusan ' + formData.name"
     buttonText="Hapus"
@@ -85,6 +90,15 @@
     buttonText="OK"
     :modalIcon="modalData.modalIcon"
     :onConfirm="toggleModalAlert"
+  />
+
+  <ClassicModal
+    v-model="isDeleteModalOpen"
+    title="Apakah anda yakin?"
+    :description="modalData.description"
+    buttonText="Hapus"
+    :onConfirm="handleDestroy"
+    :isPending="isPending"
   />
 </template>
 
@@ -144,6 +158,7 @@ export default {
 
       formData.id = major.id;
       formData.name = major.name;
+      modalData.description = `Apakah anda yakin ingin menghapus data jurusan ${major.name}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

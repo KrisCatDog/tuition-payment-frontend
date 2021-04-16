@@ -7,9 +7,9 @@
     >
       <div class="py-4 text-gray-500 dark:text-gray-400">
         <a
-          class="font-mulish inline-block ml-6 text-xl font-extrabold text-gray-800 dark:text-gray-200"
+          class="inline-block ml-6 text-xl font-extrabold text-gray-800 dark:text-gray-200"
         >
-          Aplikasi SPP
+          E-SPP
         </a>
         <ul class="mt-8">
           <li class="relative my-1 mx-4">

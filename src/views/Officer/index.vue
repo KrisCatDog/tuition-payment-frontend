@@ -1,9 +1,7 @@
 <template>
   <AppLayout>
     <div class="flex justify-between items-center">
-      <h2
-        class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-      >
+      <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
         Data Petugas
       </h2>
 
@@ -15,7 +13,7 @@
     <FormModal
       v-model="isModalOpen"
       title="Tambah Data Petugas"
-      buttonText="Submit"
+      buttonText="Simpan"
       :onConfirm="handleSubmit"
       :isPending="isPending"
     >
@@ -114,7 +112,7 @@
                 <th class="px-8 py-3">Nama Petugas</th>
                 <th class="px-8 py-3">Username</th>
                 <th class="px-8 py-3">Role</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody

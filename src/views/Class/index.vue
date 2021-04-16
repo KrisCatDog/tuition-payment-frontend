@@ -1,9 +1,7 @@
 <template>
   <AppLayout>
     <div class="flex justify-between items-center">
-      <h2
-        class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-      >
+      <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
         Data Kelas
       </h2>
 
@@ -15,7 +13,7 @@
     <FormModal
       v-model="isModalOpen"
       title="Tambah Data Kelas"
-      buttonText="Submit"
+      buttonText="Simpan"
       :onConfirm="handleSubmit"
       :isPending="isPending"
     >
@@ -33,8 +31,8 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Tingkatan Kelas" />
-        <OutlineInput id="nama-kelas" type="text" v-model="formData.grade" />
+        <TheLabel target="grade" label="Tingkatan Kelas" />
+        <OutlineInput id="grade" type="text" v-model="formData.grade" />
         <InputError
           v-if="errors && errors.errors && errors.errors.grade"
           :label="errors.errors.grade[0]"
@@ -42,8 +40,8 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Nomor Kelas" />
-        <OutlineInput id="nama-kelas" type="text" v-model="formData.code" />
+        <TheLabel target="code" label="Nomor Kelas" />
+        <OutlineInput id="code" type="text" v-model="formData.code" />
         <InputError
           v-if="errors && errors.errors && errors.errors.code"
           :label="errors.errors.code[0]"
@@ -101,7 +99,7 @@
                 <th class="px-8 py-3">Tingkatan Kelas</th>
                 <th class="px-8 py-3">Nomor Kelas</th>
                 <th class="px-8 py-3">Nama Jurusan</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex h-screen bg-gray-50 dark:bg-gray-900"
+    class="flex h-screen bg-gray-100 dark:bg-gray-900"
     :class="{ 'overflow-hidden': isSideMenuOpen }"
   >
     <DesktopSidebar />

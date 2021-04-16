@@ -48,10 +48,16 @@
     </td>
   </tr>
 
+  <tr class="text-gray-700 dark:text-gray-400" v-if="officers.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data petugas tidak di temukan.
+    </td>
+  </tr>
+
   <FormModal
     v-model="isEditModalOpen"
     title="Edit Data Petugas"
-    buttonText="Submit"
+    buttonText="Simpan"
     :onConfirm="handleUpdate"
     :isPending="isPending"
   >
@@ -77,9 +83,7 @@
   <ClassicModal
     v-model="isDeleteModalOpen"
     title="Apakah anda yakin?"
-    :description="
-      'Anda akan menghapus data Petugas dengan nama ' + formData.name
-    "
+    :description="modalData.description"
     buttonText="Hapus"
     :onConfirm="handleDestroy"
     :isPending="isPending"
@@ -156,6 +160,7 @@ export default {
       formData.id = officer.id;
       formData.name = officer.name;
       formData.username = officer.username;
+      modalData.description = `Apakah anda yakin ingin menghapus data petugas ${officer.name}? Data terkait akan terhapus secara permanen. Tindakan ini tidak bisa dibatalkan.`;
     }
 
     function toggleModalAlert() {

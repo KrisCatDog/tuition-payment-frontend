@@ -7,6 +7,7 @@ import classes from "./classes";
 import officers from "./officers";
 import students from "./students";
 import paymentHistory from "./paymentHistory";
+import paymentReports from "./paymentReports";
 
 const routes = [
   ...home,
@@ -18,6 +19,7 @@ const routes = [
   ...officers,
   ...students,
   ...paymentHistory,
+  ...paymentReports,
 ];
 
 export default routes;

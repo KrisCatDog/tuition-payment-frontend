@@ -1,9 +1,7 @@
 <template>
   <AppLayout>
-    <h2
-      class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-    >
-      History Pembayaran
+    <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
+      Data Pembayaran
     </h2>
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
@@ -46,8 +44,10 @@
                 <th class="px-8 py-3">No</th>
                 <th class="px-8 py-3">Nama Siswa</th>
                 <th class="px-8 py-3">Nama Petugas</th>
+                <th class="px-8 py-3">SPP Pada Bulan</th>
                 <th class="px-8 py-3">Jumlah Bayar</th>
                 <th class="px-8 py-3">Di Bayar Tanggal</th>
+                <th class="px-8 py-3">Di Bayar Jam</th>
               </tr>
             </thead>
             <tbody
@@ -180,7 +180,7 @@ const TheList = defineAsyncComponent(() =>
 );
 
 export default {
-  title: "History Pembayaran",
+  title: "Data Pembayaran",
   components: {
     AppLayout,
     TheList,
