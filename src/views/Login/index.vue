@@ -18,11 +18,11 @@
         class="w-full sm:w-96 2xl:w-2/5 flex flex-col"
         autocomplete="off"
       >
-        <h3 class="text-3xl font-bold">Login</h3>
+        <h3 class="text-3xl font-bold text-gray-700">Login</h3>
         <div class="flex flex-col mt-12 mb-6">
           <label
             for="username"
-            class="text-xs font-bold tracking-wide uppercase"
+            class="text-sm font-semibold tracking-wide text-gray-800"
           >
             Username
           </label>
@@ -43,7 +43,7 @@
         <div class="flex flex-col mb-6">
           <label
             for="password"
-            class="text-xs font-bold tracking-wide uppercase"
+            class="text-sm font-semibold tracking-wide text-gray-800"
             >Password
           </label>
           <input
