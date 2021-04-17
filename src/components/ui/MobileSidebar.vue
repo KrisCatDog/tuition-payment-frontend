@@ -265,7 +265,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import useAuth from "@/composables/useAuth";
 
@@ -280,32 +280,56 @@ export default {
     const route = useRoute();
     const isSchoolMenuOpen = ref(false);
     const isPaymentMenuOpen = ref(false);
+    const isReportMenuOpen = ref(false);
     const path = computed(() => route.name);
     const { authUser } = useAuth();
 
-    onMounted(() => {
-      if (
-        path.value === "Majors" ||
-        path.value === "Classes" ||
-        path.value === "Students" ||
-        path.value === "Officers" ||
-        path.value === "Tuitions"
-      ) {
+    switch (path.value) {
+      case "Majors":
         isSchoolMenuOpen.value = true;
-      } else {
+        break;
+      case "Classes":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Students":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Officers":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Tuitions":
+        isSchoolMenuOpen.value = true;
+        break;
+      default:
         isSchoolMenuOpen.value = false;
-      }
+        break;
+    }
 
-      if (path.value === "PayTuition" || path.value === "PaymentHistory") {
+    switch (path.value) {
+      case "PayTuition":
         isPaymentMenuOpen.value = true;
-      } else {
+        break;
+      case "PaymentHistory":
+        isPaymentMenuOpen.value = true;
+        break;
+      default:
         isPaymentMenuOpen.value = false;
-      }
-    });
+        break;
+    }
+
+    switch (path.value) {
+      case "PaymentReports":
+        isReportMenuOpen.value = true;
+        break;
+      default:
+        isReportMenuOpen.value = false;
+        break;
+    }
 
     return {
       isSchoolMenuOpen,
       isPaymentMenuOpen,
+      isReportMenuOpen,
       authUser,
     };
   },

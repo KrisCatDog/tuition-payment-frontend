@@ -262,7 +262,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import useAuth from "@/composables/useAuth";
 
@@ -275,49 +275,47 @@ export default {
     const path = computed(() => route.name);
     const { authUser } = useAuth();
 
-    onMounted(() => {
-      switch (path.value) {
-        case "Majors":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Classes":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Students":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Officers":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Tuitions":
-          isSchoolMenuOpen.value = true;
-          break;
-        default:
-          isSchoolMenuOpen.value = false;
-          break;
-      }
+    switch (path.value) {
+      case "Majors":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Classes":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Students":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Officers":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Tuitions":
+        isSchoolMenuOpen.value = true;
+        break;
+      default:
+        isSchoolMenuOpen.value = false;
+        break;
+    }
 
-      switch (path.value) {
-        case "PayTuition":
-          isPaymentMenuOpen.value = true;
-          break;
-        case "PaymentHistory":
-          isPaymentMenuOpen.value = true;
-          break;
-        default:
-          isPaymentMenuOpen.value = false;
-          break;
-      }
+    switch (path.value) {
+      case "PayTuition":
+        isPaymentMenuOpen.value = true;
+        break;
+      case "PaymentHistory":
+        isPaymentMenuOpen.value = true;
+        break;
+      default:
+        isPaymentMenuOpen.value = false;
+        break;
+    }
 
-      switch (path.value) {
-        case "PaymentReports":
-          isReportMenuOpen.value = true;
-          break;
-        default:
-          isReportMenuOpen.value = false;
-          break;
-      }
-    });
+    switch (path.value) {
+      case "PaymentReports":
+        isReportMenuOpen.value = true;
+        break;
+      default:
+        isReportMenuOpen.value = false;
+        break;
+    }
 
     return {
       isSchoolMenuOpen,
