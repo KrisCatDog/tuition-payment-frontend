@@ -34,7 +34,10 @@
         </li>
       </ul>
       <ul>
-        <li class="relative my-1 mx-4">
+        <li
+          v-if="authUser.role.name === 'administrator'"
+          class="relative my-1 mx-4"
+        >
           <button
             class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
             :class="{
@@ -174,6 +177,10 @@
               aria-label="submenu"
             >
               <li
+                v-if="
+                  authUser.role.name === 'administrator' ||
+                  authUser.role.name === 'petugas'
+                "
                 class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               >
                 <router-link class="w-full" :to="{ name: 'PayTuition' }">
@@ -190,7 +197,10 @@
             </ul>
           </transition>
         </li>
-        <li class="relative my-1 mx-4">
+        <li
+          v-if="authUser.role.name === 'administrator'"
+          class="relative my-1 mx-4"
+        >
           <button
             class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
             @click="isReportMenuOpen = !isReportMenuOpen"
@@ -254,6 +264,7 @@
 <script>
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import useAuth from "@/composables/useAuth";
 
 export default {
   setup() {
@@ -262,6 +273,7 @@ export default {
     const isPaymentMenuOpen = ref(false);
     const isReportMenuOpen = ref(false);
     const path = computed(() => route.name);
+    const { authUser } = useAuth();
 
     onMounted(() => {
       switch (path.value) {
@@ -311,6 +323,7 @@ export default {
       isSchoolMenuOpen,
       isPaymentMenuOpen,
       isReportMenuOpen,
+      authUser,
     };
   },
 };
