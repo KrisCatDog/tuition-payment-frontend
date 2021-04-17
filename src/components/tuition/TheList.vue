@@ -58,6 +58,7 @@
     title="Edit Data SPP"
     buttonText="Simpan"
     :onConfirm="handleUpdate"
+    :onCancel="handleCancelForm"
     :isPending="isPending"
   >
     <InputGroup>
@@ -196,6 +197,10 @@ export default {
       }
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       errors,
       tuitions,
@@ -210,6 +215,7 @@ export default {
       isModalAlertOpen,
       toggleModalAlert,
       modalData,
+      handleCancelForm,
     };
   },
 };

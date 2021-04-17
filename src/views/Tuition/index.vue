@@ -15,6 +15,7 @@
       title="Tambah Data SPP"
       buttonText="Simpan"
       :onConfirm="handleSubmit"
+      :onCancel="handleCancelForm"
       :isPending="isPending"
     >
       <InputGroup>
@@ -277,6 +278,10 @@ export default {
       isModalAlertOpen.value = !isModalAlertOpen.value;
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       paginationMeta,
       handleFetch,
@@ -287,6 +292,7 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
+      handleCancelForm,
     };
   },
 };

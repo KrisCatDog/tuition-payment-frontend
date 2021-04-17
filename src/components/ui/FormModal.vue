@@ -2,7 +2,7 @@
   <transition name="backdrop-fade">
     <div
       v-show="modelValue"
-      @click.self="$emit('update:modelValue', false)"
+      @click.self="cancelModal"
       class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center justify-center"
     >
       <transition name="modal-popout">
@@ -17,7 +17,7 @@
               type="button"
               class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded focus:outline-none focus:ring-2 dark:hover:text-gray-200 hover: hover:text-gray-700"
               aria-label="close"
-              @click.prevent="$emit('update:modelValue', false)"
+              @click.prevent="cancelModal"
             >
               <svg
                 class="w-4 h-4"
@@ -77,10 +77,23 @@ export default {
       type: Function,
       required: true,
     },
+    onCancel: {
+      type: Function,
+      required: true,
+    },
     isPending: {
       type: Boolean,
       required: true,
     },
+  },
+  setup(props, context) {
+    return {
+      cancelModal() {
+        console.log("halo");
+        props.onCancel();
+        context.emit("update:modelValue", false);
+      },
+    };
   },
 };
 </script>

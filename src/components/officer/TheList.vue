@@ -59,6 +59,7 @@
     title="Edit Data Petugas"
     buttonText="Simpan"
     :onConfirm="handleUpdate"
+    :onCancel="handleCancelForm"
     :isPending="isPending"
   >
     <InputGroup>
@@ -199,6 +200,10 @@ export default {
       }
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       errors,
       officers,
@@ -213,6 +218,7 @@ export default {
       isModalAlertOpen,
       toggleModalAlert,
       modalData,
+      handleCancelForm,
     };
   },
 };

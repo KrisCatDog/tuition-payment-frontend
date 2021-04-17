@@ -10,58 +10,6 @@
       </router-link>
     </div>
 
-    <FormModal
-      v-model="isModalOpen"
-      title="Tambah Data Siswa"
-      buttonText="Simpan"
-      :onConfirm="handleSubmit"
-      :isPending="isPending"
-    >
-      <InputGroup>
-        <TheLabel target="name" label="Nama" />
-        <OutlineInput id="name" type="text" v-model="formData.name" />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.name"
-          :label="errors.errors.name[0]"
-        />
-      </InputGroup>
-
-      <InputGroup>
-        <TheLabel target="username" label="Username" />
-        <OutlineInput id="username" type="text" v-model="formData.username" />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.username"
-          :label="errors.errors.username[0]"
-        />
-      </InputGroup>
-
-      <InputGroup>
-        <TheLabel target="password" label="Password" />
-        <OutlineInput
-          id="password"
-          type="password"
-          v-model="formData.password"
-        />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.password"
-          :label="errors.errors.password[0]"
-        />
-      </InputGroup>
-
-      <InputGroup>
-        <TheLabel target="password_confirmation" label="Konfirmasi Password" />
-        <OutlineInput
-          id="password_confirmation"
-          type="password"
-          v-model="formData.password_confirmation"
-        />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.password_confirmation"
-          :label="errors.errors.password_confirmation[0]"
-        />
-      </InputGroup>
-    </FormModal>
-
     <AppModal
       v-model="isModalAlertOpen"
       title="Sukses!"
@@ -247,12 +195,7 @@
 import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import AppLayout from "@/components/layouts/AppLayout";
 import BasicButton from "@/components/ui/BasicButton";
-import FormModal from "@/components/ui/FormModal";
 import useStudent from "@/composables/useStudent";
-import OutlineInput from "@/components/ui/OutlineInput";
-import TheLabel from "@/components/ui/TheLabel";
-import InputError from "@/components/ui/InputError";
-import InputGroup from "@/components/ui/InputGroup";
 import AppModal from "@/components/ui/AppModal";
 
 const TheList = defineAsyncComponent(() =>
@@ -265,11 +208,6 @@ export default {
     AppLayout,
     BasicButton,
     TheList,
-    FormModal,
-    OutlineInput,
-    TheLabel,
-    InputError,
-    InputGroup,
     AppModal,
   },
   setup() {
@@ -316,6 +254,10 @@ export default {
       isModalAlertOpen.value = !isModalAlertOpen.value;
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       paginationMeta,
       handleFetch,
@@ -326,6 +268,7 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
+      handleCancelForm,
     };
   },
 };

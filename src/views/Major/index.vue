@@ -15,15 +15,12 @@
       title="Tambah Data Jurusan"
       buttonText="Simpan"
       :onConfirm="handleSubmit"
+      :onCancel="handleCancelForm"
       :isPending="isPending"
     >
       <InputGroup>
-        <TheLabel target="kompetensi-keahlian" label="Kompetensi Keahlian" />
-        <OutlineInput
-          id="kompetensi-keahlian"
-          type="text"
-          v-model="formData.name"
-        />
+        <TheLabel target="nama-jurusan" label="Nama Jurusan" />
+        <OutlineInput id="nama-jurusan" type="text" v-model="formData.name" />
         <InputError
           v-if="errors && errors.errors && errors.errors.name"
           :label="errors.errors.name[0]"
@@ -265,6 +262,10 @@ export default {
       isModalAlertOpen.value = !isModalAlertOpen.value;
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       paginationMeta,
       handleFetch,
@@ -276,6 +277,7 @@ export default {
       isModalAlertOpen,
       toggleModalAlert,
       searchKeyword,
+      handleCancelForm,
     };
   },
 };

@@ -29,6 +29,7 @@
     title="Edit Data Kelas"
     buttonText="Simpan"
     :onConfirm="handleUpdate"
+    :onCancel="handleCancelForm"
     :isPending="isPending"
   >
     <InputGroup>
@@ -186,6 +187,10 @@ export default {
       }
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       errors,
       classes,
@@ -201,6 +206,7 @@ export default {
       toggleModalAlert,
       modalData,
       formattedMajors,
+      handleCancelForm,
     };
   },
 };
