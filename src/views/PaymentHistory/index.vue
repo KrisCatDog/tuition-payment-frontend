@@ -44,7 +44,7 @@
                 <th class="px-8 py-3">No</th>
                 <th class="px-8 py-3">Nama Siswa</th>
                 <th class="px-8 py-3">Nama Petugas</th>
-                <th class="px-8 py-3">SPP Pada Bulan</th>
+                <th class="px-8 py-3">SPP Bulan</th>
                 <th class="px-8 py-3">Jumlah Bayar</th>
                 <th class="px-8 py-3">Di Bayar Tanggal</th>
                 <th class="px-8 py-3">Di Bayar Jam</th>
