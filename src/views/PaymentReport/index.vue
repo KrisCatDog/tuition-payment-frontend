@@ -44,10 +44,12 @@
         </dl>
 
         <div class="flex justify-end m-5 space-x-2">
-          <a :href="exportURL">
+          <a :href="exportExcelURL">
             <BasicButton type="button">Export Excel</BasicButton>
           </a>
-          <BasicButton type="button">Export PDF</BasicButton>
+          <a :href="exportPDFURL">
+            <BasicButton type="button">Export PDF</BasicButton>
+          </a>
         </div>
       </div>
     </div>
@@ -72,12 +74,16 @@ export default {
     const isModalOpen = ref(false);
     const isModalAlertOpen = ref(false);
     const formData = reactive({
-      start_date: null,
-      end_date: null,
+      start_date: "",
+      end_date: "",
     });
-    const exportURL = computed(
+    const exportExcelURL = computed(
       () =>
         `${process.env.VUE_APP_API_ORIGIN}/api/payments/export?start_date=${formData.start_date}&end_date=${formData.end_date}`
+    );
+    const exportPDFURL = computed(
+      () =>
+        `${process.env.VUE_APP_API_ORIGIN}/api/payments/exportpdf?start_date=${formData.start_date}&end_date=${formData.end_date}`
     );
 
     onMounted(async () => {
@@ -100,8 +106,9 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
-      exportURL,
+      exportExcelURL,
       formData,
+      exportPDFURL,
     };
   },
 };
