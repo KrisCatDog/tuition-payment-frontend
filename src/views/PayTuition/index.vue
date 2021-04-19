@@ -17,22 +17,26 @@
 
     <form
       @submit.prevent="handleSubmit"
-      class="mb-8 bg-white shadow overflow-hidden sm:rounded-lg"
+      class="mb-8 bg-white dark:bg-gray-700 shadow overflow-hidden sm:rounded-lg"
     >
       <div class="px-4 py-5 sm:px-6">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
+        <h3
+          class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100"
+        >
           Entri Transaksi Pembayaran
         </h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+        <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-300">
           Halaman pembayaran SPP siswa.
         </p>
       </div>
-      <div class="border-t border-gray-200">
+      <div class="border-t border-gray-200 dark:border-gray-600">
         <dl>
           <div
-            class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+            class="bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
           >
-            <dt class="text-sm font-medium text-gray-500">Pilih Siswa</dt>
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-100">
+              Pilih Siswa
+            </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <Select2
                 class="font-medium"
@@ -46,13 +50,15 @@
             </dd>
           </div>
           <div
-            class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+            class="bg-white dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
           >
-            <dt class="text-sm font-medium text-gray-500">Bulan Tagihan</dt>
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-100">
+              Bulan Tagihan
+            </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <select
                 v-model="formData.bills_date"
-                class="block w-full mt-1 text-sm rounded-md border-gray-300 shadow-sm focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50"
+                class="block w-full mt-1 text-sm rounded-md border-gray-300 shadow-sm focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 dark:text-white dark:bg-gray-800 dark:border-gray-700"
               >
                 <option selected value="" disabled>Pilih Bulan</option>
                 <option
@@ -70,9 +76,11 @@
             </dd>
           </div>
           <div
-            class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+            class="bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
           >
-            <dt class="text-sm font-medium text-gray-500">Jumlah Bayar</dt>
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-100">
+              Jumlah Bayar
+            </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <OutlineInput
                 id="amount_paid"
