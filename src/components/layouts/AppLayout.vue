@@ -10,7 +10,7 @@
     <MobileSidebar :isVisible="isSideMenuOpen" />
 
     <div class="flex flex-col flex-1 w-full">
-      <AppHeader />
+      <AppHeader :toggleSideMenu="toggleSideMenu" />
 
       <main class="h-full overflow-y-auto">
         <div class="container px-6 mx-auto grid">
