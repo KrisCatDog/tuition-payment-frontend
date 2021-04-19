@@ -1,5 +1,8 @@
 <template>
-  <label :for="target" class="text-sm font-medium text-gray-600">
+  <label
+    :for="target"
+    class="text-sm font-medium text-gray-600 dark:text-gray-300"
+  >
     {{ label }}
   </label>
 </template>

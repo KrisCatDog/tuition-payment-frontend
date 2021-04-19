@@ -27,6 +27,7 @@
     title="Edit Data Jurusan"
     buttonText="Simpan"
     :onConfirm="handleUpdate"
+    :onCancel="handleCancelForm"
     :isPending="isPending"
   >
     <InputGroup>
@@ -167,6 +168,10 @@ export default {
       }
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       errors,
       majors,
@@ -181,6 +186,7 @@ export default {
       isModalAlertOpen,
       toggleModalAlert,
       modalData,
+      handleCancelForm,
     };
   },
 };

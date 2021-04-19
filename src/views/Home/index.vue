@@ -9,7 +9,7 @@
       <template #fallback>
         <div class="grid gap-4 mb-8 md:grid-cols-2 xl:grid-cols-3">
           <div
-            class="shadow-sm rounded-md p-4 max-w-sm w-full mx-auto bg-white"
+            class="shadow-sm rounded-md p-4 w-full mx-auto bg-white dark:bg-gray-800"
           >
             <div class="animate-pulse flex items-center space-x-4">
               <div class="rounded-full bg-green-400 h-12 w-12"></div>
@@ -21,7 +21,7 @@
           </div>
 
           <div
-            class="shadow-sm rounded-md p-4 max-w-sm w-full mx-auto bg-white"
+            class="shadow-sm rounded-md p-4 w-full mx-auto bg-white dark:bg-gray-800"
           >
             <div class="animate-pulse flex items-center space-x-4">
               <div class="rounded-full bg-green-400 h-12 w-12"></div>
@@ -33,7 +33,7 @@
           </div>
 
           <div
-            class="shadow-sm rounded-md p-4 max-w-sm w-full mx-auto bg-white"
+            class="shadow-sm rounded-md p-4 w-full mx-auto bg-white dark:bg-gray-800"
           >
             <div class="animate-pulse flex items-center space-x-4">
               <div class="rounded-full bg-green-400 h-12 w-12"></div>

@@ -5,14 +5,17 @@
   >
     <div class="py-4 text-gray-500 dark:text-gray-400">
       <a
-        class="inline-block ml-6 mt-4 text-xl font-extrabold text-gray-800 dark:text-gray-200"
+        class="inline-block ml-6 mt-4 text-2xl font-extrabold text-gray-700 dark:text-gray-200"
       >
         E-SPP
       </a>
       <ul class="mt-8">
         <li class="relative my-1 mx-4">
           <router-link
-            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+            class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-400"
+            :class="{
+              'bg-green-50': $route.name == 'Home',
+            }"
             :to="{ name: 'Home' }"
           >
             <svg
@@ -41,7 +44,7 @@
           <button
             class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
             :class="{
-              'bg-green-50 text-green-500':
+              'bg-green-50 text-green-500 dark:hover:text-green-500':
                 $route.name == 'Majors' ||
                 $route.name == 'Classes' ||
                 $route.name == 'Students' ||
@@ -132,6 +135,10 @@
         <li class="relative my-1 mx-4">
           <button
             class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
+            :class="{
+              'bg-green-50 text-green-500 dark:hover:text-green-500':
+                $route.name == 'PayTuition' || $route.name == 'Payments',
+            }"
             @click="isPaymentMenuOpen = !isPaymentMenuOpen"
             aria-haspopup="true"
           >
@@ -203,6 +210,10 @@
         >
           <button
             class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
+            :class="{
+              'bg-green-50 text-green-500 dark:hover:text-green-500':
+                $route.name == 'PaymentReports',
+            }"
             @click="isReportMenuOpen = !isReportMenuOpen"
             aria-haspopup="true"
           >
@@ -262,7 +273,7 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import useAuth from "@/composables/useAuth";
 
@@ -275,49 +286,47 @@ export default {
     const path = computed(() => route.name);
     const { authUser } = useAuth();
 
-    onMounted(() => {
-      switch (path.value) {
-        case "Majors":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Classes":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Students":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Officers":
-          isSchoolMenuOpen.value = true;
-          break;
-        case "Tuitions":
-          isSchoolMenuOpen.value = true;
-          break;
-        default:
-          isSchoolMenuOpen.value = false;
-          break;
-      }
+    switch (path.value) {
+      case "Majors":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Classes":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Students":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Officers":
+        isSchoolMenuOpen.value = true;
+        break;
+      case "Tuitions":
+        isSchoolMenuOpen.value = true;
+        break;
+      default:
+        isSchoolMenuOpen.value = false;
+        break;
+    }
 
-      switch (path.value) {
-        case "PayTuition":
-          isPaymentMenuOpen.value = true;
-          break;
-        case "PaymentHistory":
-          isPaymentMenuOpen.value = true;
-          break;
-        default:
-          isPaymentMenuOpen.value = false;
-          break;
-      }
+    switch (path.value) {
+      case "PayTuition":
+        isPaymentMenuOpen.value = true;
+        break;
+      case "PaymentHistory":
+        isPaymentMenuOpen.value = true;
+        break;
+      default:
+        isPaymentMenuOpen.value = false;
+        break;
+    }
 
-      switch (path.value) {
-        case "PaymentReports":
-          isReportMenuOpen.value = true;
-          break;
-        default:
-          isReportMenuOpen.value = false;
-          break;
-      }
-    });
+    switch (path.value) {
+      case "PaymentReports":
+        isReportMenuOpen.value = true;
+        break;
+      default:
+        isReportMenuOpen.value = false;
+        break;
+    }
 
     return {
       isSchoolMenuOpen,
@@ -331,7 +340,7 @@ export default {
 
 <style lang="postcss" scoped>
 #sidebar-desktop .router-link-exact-active {
-  @apply bg-green-50 text-green-500;
+  @apply text-green-500;
 }
 .submenu-popout-enter-from {
   @apply opacity-25 max-h-0;

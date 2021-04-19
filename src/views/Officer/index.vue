@@ -15,6 +15,7 @@
       title="Tambah Data Petugas"
       buttonText="Simpan"
       :onConfirm="handleSubmit"
+      :onCancel="handleCancelForm"
       :isPending="isPending"
     >
       <InputGroup>
@@ -72,9 +73,9 @@
     />
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
-      <div class="w-1/2 mt-1 flex rounded-md shadow-sm">
+      <div class="w-full sm:w-1/2 mt-1 flex rounded-md shadow-sm">
         <span
-          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm dark:bg-gray-900 dark:border-gray-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +95,7 @@
           @input="handleFetch(paginationMeta.current_page, searchKeyword)"
           v-model="searchKeyword"
           type="text"
-          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 dark:text-white dark:bg-gray-800 dark:border-gray-700"
           placeholder="Search in Nama Petugas, Username, Role"
         />
       </div>
@@ -123,24 +124,39 @@
 
                 <template #fallback>
                   <tr v-for="i in 5" :key="i" class="animate-pulse">
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-1/4"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
-                      <div>
-                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
-                      </div>
-                    </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-1/2"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-1/3"></div>
                       </div>
                     </td>
                   </tr>
@@ -281,6 +297,7 @@ export default {
       password: "",
       password_confirmation: "",
     });
+    const searchKeyword = ref("");
 
     onMounted(async () => {
       await fetchOfficer(1, perPage.value);
@@ -308,6 +325,10 @@ export default {
       isModalAlertOpen.value = !isModalAlertOpen.value;
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       paginationMeta,
       handleFetch,
@@ -318,6 +339,8 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
+      handleCancelForm,
+      searchKeyword,
     };
   },
 };

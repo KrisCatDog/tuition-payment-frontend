@@ -1,10 +1,10 @@
 <template>
   <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
     <div
-      class="container flex items-center justify-between md:justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+      class="container flex items-center justify-between md:justify-end h-full px-6 mx-auto text-green-600 dark:text-green-300"
     >
       <button
-        class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+        class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-green"
         @click="toggleSideMenu"
         aria-label="Menu"
       >
@@ -25,7 +25,7 @@
       <ul class="flex items-center flex-shrink-0 space-x-6">
         <li class="flex">
           <button
-            class="rounded-md focus:outline-none focus:shadow-outline-purple"
+            class="rounded-md focus:outline-none focus:shadow-outline-green"
             @click="toggleTheme"
             aria-label="Toggle color mode"
           >
@@ -58,7 +58,7 @@
         </li>
         <li class="relative">
           <button
-            class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+            class="align-middle rounded-full focus:shadow-outline-green focus:outline-none"
             @click="toggleProfileMenu"
             @keydown.escape="closeProfileMenu"
             aria-label="Account"
@@ -159,6 +159,12 @@
 import { ref } from "vue";
 import useLogin from "@/composables/useLogin";
 export default {
+  props: {
+    toggleSideMenu: {
+      type: Function,
+      required: true,
+    },
+  },
   setup() {
     const isProfileMenuOpen = ref(false);
     const isDark = ref(false);
