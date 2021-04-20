@@ -15,9 +15,6 @@
           <li class="relative my-1 mx-4">
             <router-link
               class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-400"
-              :class="{
-                'bg-green-50': $route.name == 'Home',
-              }"
               :to="{ name: 'Home' }"
             >
               <svg
@@ -46,7 +43,7 @@
             <button
               class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
               :class="{
-                'bg-green-50 text-green-500 dark:hover:text-green-500':
+                'bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100':
                   $route.name == 'Majors' ||
                   $route.name == 'Classes' ||
                   $route.name == 'Students' ||
@@ -138,7 +135,7 @@
             <button
               class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
               :class="{
-                'bg-green-50 text-green-500 dark:hover:text-green-500':
+                'bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100':
                   $route.name == 'PayTuition' || $route.name == 'Payments',
               }"
               @click="isPaymentMenuOpen = !isPaymentMenuOpen"
@@ -213,7 +210,7 @@
             <button
               class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
               :class="{
-                'bg-green-50 text-green-500 dark:hover:text-green-500':
+                'bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100':
                   $route.name == 'PaymentReports',
               }"
               @click="isReportMenuOpen = !isReportMenuOpen"
@@ -348,8 +345,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-#sidebar-mobile .router-link-exact-active {
-  @apply text-green-500;
+#sidebar-desktop ul > li > .router-link-exact-active {
+  @apply bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100;
 }
 .sidebar-popout-enter-from,
 .sidebar-popout-leave-to {
