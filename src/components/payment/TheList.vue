@@ -11,8 +11,16 @@
     <td class="px-8 py-3 text-sm font-medium">
       {{ payment.officer.name }}
     </td>
+    <td class="px-8 py-3 text-sm font-medium">{{ payment.bills_date }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ payment.amount_paid }}</td>
+    <td class="px-8 py-3 text-sm font-medium">{{ payment.paid_on }}</td>
     <td class="px-8 py-3 text-sm font-medium">{{ payment.paid_at }}</td>
+  </tr>
+
+  <tr class="text-gray-700 dark:text-gray-400" v-if="payments.length == 0">
+    <td colspan="99" class="px-8 py-3 text-sm font-medium">
+      Data transaksi pembayaran spp tidak di temukan.
+    </td>
   </tr>
 </template>
 

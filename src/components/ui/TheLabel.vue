@@ -1,7 +1,7 @@
 <template>
   <label
     :for="target"
-    class="text-xs font-bold tracking-wide uppercase text-gray-600"
+    class="text-sm font-medium text-gray-600 dark:text-gray-300"
   >
     {{ label }}
   </label>

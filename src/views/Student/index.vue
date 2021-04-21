@@ -1,9 +1,7 @@
 <template>
   <AppLayout>
     <div class="flex justify-between items-center">
-      <h2
-        class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-      >
+      <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
         Data Siswa
       </h2>
 
@@ -11,58 +9,6 @@
         <BasicButton type="button"> Tambah </BasicButton>
       </router-link>
     </div>
-
-    <FormModal
-      v-model="isModalOpen"
-      title="Tambah Data Siswa"
-      buttonText="Submit"
-      :onConfirm="handleSubmit"
-      :isPending="isPending"
-    >
-      <InputGroup>
-        <TheLabel target="name" label="Nama" />
-        <OutlineInput id="name" type="text" v-model="formData.name" />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.name"
-          :label="errors.errors.name[0]"
-        />
-      </InputGroup>
-
-      <InputGroup>
-        <TheLabel target="username" label="Username" />
-        <OutlineInput id="username" type="text" v-model="formData.username" />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.username"
-          :label="errors.errors.username[0]"
-        />
-      </InputGroup>
-
-      <InputGroup>
-        <TheLabel target="password" label="Password" />
-        <OutlineInput
-          id="password"
-          type="password"
-          v-model="formData.password"
-        />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.password"
-          :label="errors.errors.password[0]"
-        />
-      </InputGroup>
-
-      <InputGroup>
-        <TheLabel target="password_confirmation" label="Konfirmasi Password" />
-        <OutlineInput
-          id="password_confirmation"
-          type="password"
-          v-model="formData.password_confirmation"
-        />
-        <InputError
-          v-if="errors && errors.errors && errors.errors.password_confirmation"
-          :label="errors.errors.password_confirmation[0]"
-        />
-      </InputGroup>
-    </FormModal>
 
     <AppModal
       v-model="isModalAlertOpen"
@@ -76,9 +22,9 @@
     <div
       class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700 overflow-x-hidden"
     >
-      <div class="w-1/2 mt-1 flex rounded-md shadow-sm">
+      <div class="w-full sm:w-1/2 mt-1 flex rounded-md shadow-sm">
         <span
-          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm dark:bg-gray-900 dark:border-gray-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +44,7 @@
           @input="handleFetch(paginationMeta.current_page, searchKeyword)"
           v-model="searchKeyword"
           type="text"
-          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 dark:text-white dark:bg-gray-800 dark:border-gray-700"
           placeholder="Search in students"
         />
       </div>
@@ -122,7 +68,7 @@
                 <th class="px-8 py-3">Tingkatan Kelas</th>
                 <th class="px-8 py-3">Nomor Kelas</th>
                 <th class="px-8 py-3">Jurusan</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody
@@ -133,24 +79,81 @@
 
                 <template #fallback>
                   <tr v-for="i in 5" :key="i" class="animate-pulse">
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
-                      <div>
-                        <div class="h-4 bg-green-400 rounded w-1/3"></div>
-                      </div>
-                    </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-1/2"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
-                        <div class="h-4 bg-green-400 rounded w-1/2"></div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
-                        <div class="h-4 bg-green-400 rounded w-1/2"></div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-3/4"></div>
                       </div>
                     </td>
                   </tr>
@@ -249,12 +252,7 @@
 import { defineAsyncComponent, onMounted, reactive, ref } from "vue";
 import AppLayout from "@/components/layouts/AppLayout";
 import BasicButton from "@/components/ui/BasicButton";
-import FormModal from "@/components/ui/FormModal";
 import useStudent from "@/composables/useStudent";
-import OutlineInput from "@/components/ui/OutlineInput";
-import TheLabel from "@/components/ui/TheLabel";
-import InputError from "@/components/ui/InputError";
-import InputGroup from "@/components/ui/InputGroup";
 import AppModal from "@/components/ui/AppModal";
 
 const TheList = defineAsyncComponent(() =>
@@ -267,11 +265,6 @@ export default {
     AppLayout,
     BasicButton,
     TheList,
-    FormModal,
-    OutlineInput,
-    TheLabel,
-    InputError,
-    InputGroup,
     AppModal,
   },
   setup() {
@@ -291,6 +284,7 @@ export default {
       password: "",
       password_confirmation: "",
     });
+    const searchKeyword = ref("");
 
     onMounted(async () => {
       await fetchStudent(1, perPage.value);
@@ -318,6 +312,10 @@ export default {
       isModalAlertOpen.value = !isModalAlertOpen.value;
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       paginationMeta,
       handleFetch,
@@ -328,6 +326,8 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
+      handleCancelForm,
+      searchKeyword,
     };
   },
 };

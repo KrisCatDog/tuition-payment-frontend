@@ -1,15 +1,13 @@
 <template>
   <AppLayout>
-    <h2
-      class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-    >
-      History Pembayaran
+    <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
+      Data Pembayaran
     </h2>
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
-      <div class="w-1/2 mt-1 flex rounded-md shadow-sm">
+      <div class="w-full sm:w-1/2 mt-1 flex rounded-md shadow-sm">
         <span
-          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm dark:bg-gray-900 dark:border-gray-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +27,7 @@
           @input="handleFetch(paginationMeta.current_page, searchKeyword)"
           v-model="searchKeyword"
           type="text"
-          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 dark:text-white dark:bg-gray-800 dark:border-gray-700"
           placeholder="Search in Nama Siswa, Nama Petugas, Jumlah Bayar"
         />
       </div>
@@ -46,8 +44,10 @@
                 <th class="px-8 py-3">No</th>
                 <th class="px-8 py-3">Nama Siswa</th>
                 <th class="px-8 py-3">Nama Petugas</th>
+                <th class="px-8 py-3">SPP Bulan</th>
                 <th class="px-8 py-3">Jumlah Bayar</th>
                 <th class="px-8 py-3">Di Bayar Tanggal</th>
+                <th class="px-8 py-3">Di Bayar Jam</th>
               </tr>
             </thead>
             <tbody
@@ -58,24 +58,53 @@
 
                 <template #fallback>
                   <tr v-for="i in 5" :key="i" class="animate-pulse">
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
-                        <div class="h-4 bg-green-400 rounded w-1/4"></div>
+                        <div class="h-4 bg-green-400 rounded w-1/3"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
-                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                        <div class="h-4 bg-green-400 rounded w-3/4"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-3/4"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-1/2"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
-                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-full"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-3/4"></div>
                       </div>
                     </td>
                   </tr>
@@ -180,7 +209,7 @@ const TheList = defineAsyncComponent(() =>
 );
 
 export default {
-  title: "History Pembayaran",
+  title: "Data Pembayaran",
   components: {
     AppLayout,
     TheList,
@@ -190,6 +219,7 @@ export default {
     const perPage = ref(10);
     const isModalOpen = ref(false);
     const isModalAlertOpen = ref(false);
+    const searchKeyword = ref("");
 
     onMounted(async () => {
       await fetchPayment(1, perPage.value);
@@ -211,6 +241,7 @@ export default {
       isPending,
       isModalAlertOpen,
       toggleModalAlert,
+      searchKeyword,
     };
   },
 };

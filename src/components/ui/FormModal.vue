@@ -2,7 +2,7 @@
   <transition name="backdrop-fade">
     <div
       v-show="modelValue"
-      @click.self="$emit('update:modelValue', false)"
+      @click.self="cancelModal"
       class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center justify-center"
     >
       <transition name="modal-popout">
@@ -11,15 +11,17 @@
           v-show="modelValue"
           class="w-11/12 px-6 py-4 overflow-hidden bg-white dark:bg-gray-800 rounded-xl sm:m-4 sm:max-w-xl"
         >
-          <header class="flex justify-between -mx-6 -my-4 px-6 py-4 bg-gray-50">
-            <h4 class="text-xl font-extrabold text-gray-800 font-mulish">
-              SPP App
+          <header
+            class="flex justify-between -mx-6 -my-4 px-6 py-4 bg-gray-50 dark:bg-gray-900"
+          >
+            <h4 class="text-xl font-extrabold text-gray-800 dark:text-gray-50">
+              E-SPP
             </h4>
             <button
               type="button"
               class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded focus:outline-none focus:ring-2 dark:hover:text-gray-200 hover: hover:text-gray-700"
               aria-label="close"
-              @click.prevent="$emit('update:modelValue', false)"
+              @click.prevent="cancelModal"
             >
               <svg
                 class="w-4 h-4"
@@ -37,9 +39,7 @@
             </button>
           </header>
           <div class="my-8">
-            <p
-              class="mb-6 text-2xl font-extrabold text-gray-700 dark:text-gray-300"
-            >
+            <p class="mb-6 text-2xl font-bold text-gray-700 dark:text-gray-300">
               {{ title }}
             </p>
             <slot />
@@ -79,10 +79,23 @@ export default {
       type: Function,
       required: true,
     },
+    onCancel: {
+      type: Function,
+      required: true,
+    },
     isPending: {
       type: Boolean,
       required: true,
     },
+  },
+  setup(props, context) {
+    return {
+      cancelModal() {
+        console.log("halo");
+        props.onCancel();
+        context.emit("update:modelValue", false);
+      },
+    };
   },
 };
 </script>

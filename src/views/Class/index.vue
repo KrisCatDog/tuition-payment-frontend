@@ -1,9 +1,7 @@
 <template>
   <AppLayout>
     <div class="flex justify-between items-center">
-      <h2
-        class="font-mulish my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200"
-      >
+      <h2 class="my-8 text-3xl font-extrabold text-gray-700 dark:text-gray-200">
         Data Kelas
       </h2>
 
@@ -15,8 +13,9 @@
     <FormModal
       v-model="isModalOpen"
       title="Tambah Data Kelas"
-      buttonText="Submit"
+      buttonText="Simpan"
       :onConfirm="handleSubmit"
+      :onCancel="handleCancelForm"
       :isPending="isPending"
     >
       <InputGroup>
@@ -33,8 +32,8 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Tingkatan Kelas" />
-        <OutlineInput id="nama-kelas" type="text" v-model="formData.grade" />
+        <TheLabel target="grade" label="Tingkatan Kelas" />
+        <OutlineInput id="grade" type="text" v-model="formData.grade" />
         <InputError
           v-if="errors && errors.errors && errors.errors.grade"
           :label="errors.errors.grade[0]"
@@ -42,8 +41,8 @@
       </InputGroup>
 
       <InputGroup>
-        <TheLabel target="nama-kelas" label="Nomor Kelas" />
-        <OutlineInput id="nama-kelas" type="text" v-model="formData.code" />
+        <TheLabel target="code" label="Nomor Kelas" />
+        <OutlineInput id="code" type="text" v-model="formData.code" />
         <InputError
           v-if="errors && errors.errors && errors.errors.code"
           :label="errors.errors.code[0]"
@@ -61,9 +60,9 @@
     />
 
     <div class="mb-8 p-5 rounded-3xl shadow-xl bg-white dark:bg-gray-700">
-      <div class="w-1/2 mt-1 flex rounded-md shadow-sm">
+      <div class="w-full sm:w-1/2 mt-1 flex rounded-md shadow-sm">
         <span
-          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+          class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm dark:bg-gray-900 dark:border-gray-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +82,7 @@
           @input="handleFetch(paginationMeta.current_page, searchKeyword)"
           v-model="searchKeyword"
           type="text"
-          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+          class="font-medium focus:ring-green-500 focus:border-green-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 dark:text-white dark:bg-gray-800 dark:border-gray-700"
           placeholder="Search in Tingkatan Kelas, Nomor Kelas, Nama Jurusan"
         />
       </div>
@@ -101,7 +100,7 @@
                 <th class="px-8 py-3">Tingkatan Kelas</th>
                 <th class="px-8 py-3">Nomor Kelas</th>
                 <th class="px-8 py-3">Nama Jurusan</th>
-                <th class="px-8 py-3">Actions</th>
+                <th class="px-8 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody
@@ -112,22 +111,37 @@
 
                 <template #fallback>
                   <tr v-for="i in 5" :key="i" class="animate-pulse">
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-1/4"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-5/12"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-1/2"></div>
                       </div>
                     </td>
-                    <td class="px-8 py-6 bg-white shadow-sm rounded-md mx-auto">
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
+                      <div>
+                        <div class="h-4 bg-green-400 rounded w-5/12"></div>
+                      </div>
+                    </td>
+                    <td
+                      class="px-8 py-6 bg-white shadow-sm dark:bg-gray-800 mx-auto"
+                    >
                       <div>
                         <div class="h-4 bg-green-400 rounded w-5/12"></div>
                       </div>
@@ -298,6 +312,10 @@ export default {
       isModalAlertOpen.value = !isModalAlertOpen.value;
     }
 
+    function handleCancelForm() {
+      errors.value = null;
+    }
+
     return {
       paginationMeta,
       handleFetch,
@@ -310,6 +328,7 @@ export default {
       toggleModalAlert,
       formattedMajors,
       searchKeyword,
+      handleCancelForm,
     };
   },
 };
