@@ -1,18 +1,29 @@
 <template>
   <GuestLayout>
-    <div class="shape flex justify-center items-center">
-      <div class="transform -translate-x-12">
-        <img src="@/assets/svg/login-draw.svg" alt="login-draw" />
+    <div class="shape flex justify-center items-center pb-8 sm:pb-0">
+      <div class="transform sm:-translate-x-12">
+        <img
+          src="@/assets/svg/login-draw.svg"
+          alt="login-draw"
+          class="hidden sm:block"
+        />
 
-        <div class="mt-16">
-          <h1 class="text-white text-3xl font-extrabold">
+        <div class="mt-8 sm:mt-16 px-5">
+          <h1
+            class="text-white text-2xl sm:text-3xl font-extrabold text-center sm:text-left"
+          >
             Aplikasi Pembayaran SPP
           </h1>
-          <h2 class="text-white text-2xl">SMKN 13 Bandung</h2>
+          <h2 class="text-white text-xl sm:text-2xl text-center sm:text-left">
+            SMKN 13 Bandung
+          </h2>
         </div>
       </div>
     </div>
-    <div class="w-1/2 flex justify-center items-center">
+
+    <div
+      class="w-full sm:w-1/2 flex justify-center items-center px-5 sm:px-0 mt-12 sm:mt-0"
+    >
       <form
         @submit.prevent="handleSubmit"
         class="w-full sm:w-96 2xl:w-2/5 flex flex-col"
@@ -96,6 +107,11 @@ export default {
 <style lang="postcss" scoped>
 .shape {
   clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
-  @apply bg-green-400 w-1/2;
+  @apply bg-green-400 w-full sm:w-1/2;
+}
+@media screen and (max-width: 640px) {
+  .shape {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
 }
 </style>
