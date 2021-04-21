@@ -52,10 +52,10 @@
         </dl>
 
         <div class="flex justify-end m-5 space-x-2">
-          <a :href="exportExcelURL">
+          <a :href="exportExcelURL" target="_blank">
             <BasicButton type="button">Export Excel</BasicButton>
           </a>
-          <a :href="exportPDFURL">
+          <a :href="exportPDFURL" target="_blank">
             <BasicButton type="button">Export PDF</BasicButton>
           </a>
         </div>
