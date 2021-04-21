@@ -15,9 +15,6 @@
           <li class="relative my-1 mx-4">
             <router-link
               class="px-5 py-3 rounded-xl inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-400"
-              :class="{
-                'bg-green-50': $route.name == 'Home',
-              }"
               :to="{ name: 'Home' }"
             >
               <svg
@@ -46,7 +43,7 @@
             <button
               class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
               :class="{
-                'bg-green-50 text-green-500 dark:hover:text-green-500':
+                'bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100':
                   $route.name == 'Majors' ||
                   $route.name == 'Classes' ||
                   $route.name == 'Students' ||
@@ -138,26 +135,18 @@
             <button
               class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
               :class="{
-                'bg-green-50 text-green-500 dark:hover:text-green-500':
+                'bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100':
                   $route.name == 'PayTuition' || $route.name == 'Payments',
               }"
               @click="isPaymentMenuOpen = !isPaymentMenuOpen"
               aria-haspopup="true"
             >
               <span class="inline-flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path
-                    d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    fill-rule="evenodd"
+                    d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"
                   ></path>
                 </svg>
                 <span class="ml-4">Pembayaran</span>
@@ -213,7 +202,7 @@
             <button
               class="px-5 py-3 rounded-xl inline-flex justify-between items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none"
               :class="{
-                'bg-green-50 text-green-500 dark:hover:text-green-500':
+                'bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100':
                   $route.name == 'PaymentReports',
               }"
               @click="isReportMenuOpen = !isReportMenuOpen"
@@ -348,8 +337,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-#sidebar-mobile .router-link-exact-active {
-  @apply text-green-500;
+#sidebar-desktop ul > li > .router-link-exact-active {
+  @apply bg-green-50 dark:bg-green-500 text-green-500 dark:text-green-100;
 }
 .sidebar-popout-enter-from,
 .sidebar-popout-leave-to {

@@ -20,10 +20,7 @@
       >
         <h3 class="text-3xl font-bold text-gray-700">Login</h3>
         <div class="flex flex-col mt-12 mb-6">
-          <label
-            for="username"
-            class="text-sm font-semibold tracking-wide text-gray-800"
-          >
+          <label for="username" class="text-sm font-semibold text-gray-800">
             Username
           </label>
           <input
@@ -41,9 +38,7 @@
           </p>
         </div>
         <div class="flex flex-col mb-6">
-          <label
-            for="password"
-            class="text-sm font-semibold tracking-wide text-gray-800"
+          <label for="password" class="text-sm font-semibold text-gray-800"
             >Password
           </label>
           <input
