@@ -26,7 +26,7 @@ const actions = {
     const res = await ApiService.get(`/api/get-today-payments?page=${page}`);
 
     commit("setTodayPayments", res.data);
-  }
+  },
 };
 
 const mutations = {
@@ -43,7 +43,7 @@ const mutations = {
 
     state.todayPayments = payload.data;
     state.paginationMeta = paginationMeta;
-  }
+  },
 };
 
 export default {
