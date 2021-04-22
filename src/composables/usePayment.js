@@ -17,7 +17,7 @@ const fetchPayment = async (page, perPage = 15, search = "") => {
     const res = await ApiService.get(
       `/api/payments?page=${page}&per_page=${perPage}&search=${search}`
     );
-
+    console.log(res.data);
     state.payments = res.data.data;
     state.paginationMeta = res.data.meta;
 
